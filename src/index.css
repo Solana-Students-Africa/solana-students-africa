@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Solana-inspired design system with purple gradients and modern styling */
+/* Solana-inspired design system with premium gradients */
 
 @layer base {
   :root {
@@ -37,7 +37,7 @@
 
     --radius: 0.5rem;
 
-    /* Solana gradient colors */
+    /* Enhanced Solana gradient colors */
     --solana-purple: 264 83% 53%;
     --solana-green: 158 100% 43%;
     --solana-blue: 217 91% 60%;
@@ -83,17 +83,6 @@
     @apply bg-background text-foreground;
   }
   
-  .solana-gradient {
-    background: linear-gradient(135deg, hsl(var(--solana-purple)) 0%, hsl(var(--solana-green)) 100%);
-  }
-  
-  .solana-gradient-text {
-    background: linear-gradient(135deg, hsl(var(--solana-purple)) 0%, hsl(var(--solana-green)) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
   .floating-animation {
     animation: float 3s ease-in-out infinite;
   }
@@ -101,5 +90,37 @@
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
+  }
+  
+  /* Enhanced gradient animations */
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { 
+      filter: drop-shadow(0 0 8px hsl(var(--solana-purple) / 0.3));
+    }
+    50% { 
+      filter: drop-shadow(0 0 16px hsl(var(--solana-purple) / 0.6)) drop-shadow(0 0 24px hsl(var(--solana-green) / 0.3));
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Mobile responsive text */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }

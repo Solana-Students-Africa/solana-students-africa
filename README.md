@@ -1,73 +1,150 @@
-# Welcome to your Lovable project
 
-## Project info
+# Solana Students Africa Hackathon
 
-**URL**: https://lovable.dev/projects/a23866d0-bb4d-4630-8bba-0e3d80e14d4b
+Welcome to the official website for Solana Students Africa - Nigeria's premier student hackathon focused on Solana blockchain development and AI agents.
 
-## How can I edit this code?
+## Project Overview
 
-There are several ways of editing your application.
+This is the landing page for the **Build with Solana: On-Chain Meets Intelligence** hackathon, exclusively designed for university students across Nigeria. The event brings together 700+ students from 6+ universities in Lagos and beyond to build innovative solutions using Solana blockchain technology and AI.
 
-**Use Lovable**
+## Event Details
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a23866d0-bb4d-4630-8bba-0e3d80e14d4b) and start prompting.
+- **Duration**: 3-week hackathon (September 2025)
+- **Location**: University of Lagos, Nigeria
+- **Participants**: 700+ university students
+- **Focus**: Solana blockchain development + AI integration
+- **Experience Level**: No prior blockchain experience needed
 
-Changes made via Lovable will be committed automatically to this repo.
+## Hackathon Tracks
 
-**Use your preferred IDE**
+1. **DeFi + AI Analytics** - Intelligent DeFi applications with AI-powered insights
+2. **AI-Powered Metadata Engines** - Smart metadata systems with AI for blockchain data
+3. **Campus Tools with Solana Pay** - Payment solutions and campus utilities
+4. **AI Agents** - Autonomous AI agents interacting with Solana blockchain
+5. **Education & Accessibility** - Educational tools using LLMs and smart contracts
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Technologies Used
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+This website is built with:
 
-Follow these steps:
+- **React** - Frontend framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Build tool and development server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Component library
+- **Lucide React** - Icon library
+- **Next Themes** - Dark/light mode support
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or later)
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
+cd solana-students-africa
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server with hot reloading
+- `npm run build` - Build the project for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint for code quality checks
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   ├── theme-provider.tsx
+│   └── theme-toggle.tsx
+├── pages/              # Page components
+│   └── Index.tsx       # Main landing page
+├── lib/                # Utility functions
+├── hooks/              # Custom React hooks
+└── index.css          # Global styles and Tailwind config
+```
 
-This project is built with:
+## Features
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Dark/Light Mode** - Theme switching with persistent preferences
+- **Smooth Animations** - CSS animations and transitions
+- **Accessible Components** - WCAG compliant UI components
+- **SEO Optimized** - Meta tags and semantic HTML structure
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/a23866d0-bb4d-4630-8bba-0e3d80e14d4b) and click on Share -> Publish.
+This project can be deployed on various platforms:
 
-## Can I connect a custom domain to my Lovable project?
+- **Lovable** (Primary) - Click "Publish" in the Lovable editor
+- **Vercel** - Connect your GitHub repo to Vercel
+- **Netlify** - Deploy directly from GitHub
+- **GitHub Pages** - Use GitHub Actions for deployment
 
-Yes, you can!
+## Custom Domain
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The official website is hosted at: **solanastudentsafrica.com**
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Contributing
+
+This is an open-source project for the Solana Students Africa community. Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Partners & Communities
+
+- Web3Afrika
+- Web3Unilag
+- GDSC (Google Developer Student Clubs)
+- GitHub Campus Experts
+- WomenInDefi
+- Various Nigerian University Communities
+
+## Contact
+
+**Lead Organizer**: Tobiloba Adedeji  
+**Email**: adedejitobiloba7@gmail.com  
+**Twitter**: [@toby_solutions](https://x.com/toby_solutions)  
+**GitHub**: [@tobySolutions](https://github.com/tobySolutions)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Issues](../../issues) page
+2. Join our Discord community
+3. Contact the organizers directly
+
+---
+
+**Empowering the next generation of blockchain developers in Africa** 🚀
+
+Built with ❤️ for the African blockchain community

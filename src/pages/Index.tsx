@@ -1,10 +1,18 @@
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Trophy, BookOpen, Code, Zap, Github, Twitter, Mail } from "lucide-react";
+import { Calendar, MapPin, Users, Trophy, BookOpen, Code, Zap, Github, Twitter, Mail, Menu } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 const Index = () => {
   const handleRegisterClick = () => {
     // This will be updated with actual registration link
@@ -16,32 +24,61 @@ const Index = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const handleMenuLinkClick = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-solana-purple via-solana-blue to-solana-green"></div>
-              <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-solana-purple via-solana-blue to-solana-green bg-clip-text text-transparent">
-                Solana Students Africa
-              </h1>
-            </div>
+      
+<header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div className="container flex h-16 items-center justify-between">
+    <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-solana-purple via-solana-blue to-solana-green flex-shrink-0"></div>
+        <h1 className=" font-bold bg-gradient-to-r from-solana-purple via-solana-blue to-solana-green bg-clip-text text-transparent  text-base sm:text-xl  min-[321px]:whitespace-nowrap">
+          Solana Students Africa
+        </h1>
+      </div>
+    </div>
+
+    {/* Desktop Navigation  */}
+    <nav className="hidden md:flex items-center space-x-6">
+      <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</a>
+      <a href="#tracks" className="text-sm font-medium hover:text-primary transition-colors">Tracks</a>
+      <a href="#timeline" className="text-sm font-medium hover:text-primary transition-colors">Timeline</a>
+      <a href="#partners" className="text-sm font-medium hover:text-primary transition-colors">Partners</a>
+      <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Contact</a>
+      <ThemeToggle />
+    </nav>
+
+    {/* Mobile Menu, added an hamburger menu for mobile view */} 
+    <div className="flex items-center space-x-2 md:hidden">
+      <ThemeToggle />
+      <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon">
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Open menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right">
+          <div className="grid gap-6 py-6">
+            <a href="#about" onClick={handleMenuLinkClick}className="text-lg font-medium hover:text-primary transition-colors">About</a>
+            <a href="#tracks" onClick={handleMenuLinkClick}className="text-lg font-medium hover:text-primary transition-colors">Tracks</a>
+            <a href="#timeline" onClick={handleMenuLinkClick}className="text-lg font-medium hover:text-primary transition-colors">Timeline</a>
+            <a href="#partners" onClick={handleMenuLinkClick}className="text-lg font-medium hover:text-primary transition-colors">Partners</a>
+            <a href="#contact" onClick={handleMenuLinkClick}className="text-lg font-medium hover:text-primary transition-colors">Contact</a>
           </div>
-          <nav className="hidden md:flex items-center space-x-6">
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</a>
-            <a href="#tracks" className="text-sm font-medium hover:text-primary transition-colors">Tracks</a>
-            <a href="#timeline" className="text-sm font-medium hover:text-primary transition-colors">Timeline</a>
-            <a href="#partners" className="text-sm font-medium hover:text-primary transition-colors">Partners</a>
-            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Contact</a>
-            <ThemeToggle />
-          </nav>
-          <div className="md:hidden">
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+        </SheetContent>
+      </Sheet>
+      
+    </div>
+    
+  </div>
+</header>
 
       {/* Hero Section */}
       <section className="py-20 px-4 text-center relative overflow-hidden">
@@ -272,6 +309,60 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+
+      {/* FAQ Section, added an FAQ section */}
+<section id="faq" className="py-16 px-4 bg-gradient-to-br from-muted/30 to-muted/10">
+  <div className="container">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-solana-purple to-solana-green bg-clip-text text-transparent">
+        Frequently Asked Questions
+      </h2>
+      <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        Have questions? We've got answers. If you don't find what you're looking for, feel free to reach out.
+      </p>
+    </div>
+
+    <div className="max-w-3xl mx-auto">
+      <Accordion type="single" collapsible className="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Who is eligible to participate?</AccordionTrigger>
+          <AccordionContent>
+            This hackathon is exclusively for currently enrolled university students in Nigeria. You may be asked to provide student identification to confirm your eligibility.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Do I need experience with Solana or AI?</AccordionTrigger>
+          <AccordionContent>
+            Not at all! This event is beginner-friendly. We will host pre-hackathon workshops and provide developer kits to get you up to speed with all the necessary tools.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-3">
+          <AccordionTrigger>Can I participate remotely?</AccordionTrigger>
+          <AccordionContent>
+            The hackathon includes physical onboarding workshops and a final demo day at the University of Lagos. While most of the building phase can be done remotely, attendance at the key physical events is highly encouraged.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-4">
+          <AccordionTrigger>How are teams formed? Can I work alone?</AccordionTrigger>
+          <AccordionContent>
+            You can form your own team (up to 4 members) or we can help you find a team during the pre-week team formation sessions. While you can work alone, we encourage collaboration!
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-5">
+          <AccordionTrigger>What are the submission requirements?</AccordionTrigger>
+          <AccordionContent>
+            All submissions must include a link to a deployed, functional project and a public GitHub repository. Submissions will be managed through a Hackquest link that will be provided.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  </div>
+</section>
 
       {/* Contact Section */}
       <section id="contact" className="py-16 px-4">

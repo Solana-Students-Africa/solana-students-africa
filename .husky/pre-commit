@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+# npm test
+npx lint-staged
+
+echo "🚨 Husky pre-commit is running"

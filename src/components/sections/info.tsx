@@ -22,7 +22,7 @@ const Info = () => {
     {
       index: 3,
       title: "Amazing Prizes",
-      description: "Dev kits, swag, mentorship, and cash prizes for winners.",
+      description: "Dev kits, mech, swag, mentorship, and cash prizes for winners.",
     },
   ];
 

@@ -4,46 +4,61 @@ import TimelineCard from "./timeline-card";
 const TimelineSection = () => {
   return (
     <Container
-      className="relative flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-20"
+      className="timeline-section relative flex flex-col items-center justify-center py-20 sm:py-16"
       as="section"
       id="timeline"
     >
-      <h1 className="font-poppins z-10 mb-6 max-w-4xl text-center text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
-        Your Roadmap to <br />
-        Greatness
+      <h1 className="font-poppins z-10 flex max-w-4xl flex-col items-center text-center text-4xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 data-animate-y-up data-delay="0.2" data-easing="NAVIGATION.button">
+          Your Roadmap to
+        </h1>
+        <h1 data-animate-y-up data-delay="0.3" data-easing="NAVIGATION.button">
+          Greatness
+        </h1>
       </h1>
-
-      <p className="z-10 mb-8 w-full max-w-2xl px-2 text-center text-base font-medium sm:w-[80%] sm:px-4 sm:text-lg md:w-[60%] md:px-0 md:text-xl lg:w-[40%]">
+      <p
+        data-animate-sentences
+        data-delay="0.5"
+        data-easing="NAVIGATION.button"
+        className="z-10 my-6 w-full max-w-2xl px-2 text-center text-base font-medium sm:w-[80%] sm:px-4 sm:text-lg md:w-[60%] md:px-0 md:text-xl lg:w-[40%]"
+      >
         From onboarding to Demo Day, follow the path that turns your ideas into on-chain impact.
       </p>
 
-      <div className="flex w-full max-w-4xl flex-col items-center space-y-8 sm:items-stretch sm:space-y-12 md:space-y-16">
+      <div className="flex flex-col">
         <TimelineCard
           description="Join our Discord community, meet your team, and attend hands-on workshops introducing Solana development, smart contracts, and building with AI."
           header="Pre-Week"
           title="Onboarding and Workshop"
-          className="sm:self-start"
+          data-animate-fadein-left
+          data-delay="0.6"
+          animateDelay={0.6}
         />
-
         <TimelineCard
           description="The hackathon officially begins! Form your teams, choose a track, brainstorm project ideas, and start building."
           header="Week 1"
           title="Kickoff & Ideation"
-          className="sm:self-end"
+          className="self-end"
+          data-animate-fadein-right
+          data-delay="1.4"
+          animateDelay={1.4}
         />
-
         <TimelineCard
-          description="This is your core development week. You'll dive deep into coding, test your solutions, and join mentor office hours for feedback."
+          description="This is your core development week. You’ll dive deep into coding, test your solutions, and join mentor office hours for feedback."
           header="Week 2"
           title="Deep Build & Mentorship"
-          className="sm:self-start"
+          data-animate-fadein-left
+          data-delay="2.2"
+          animateDelay={2.2}
         />
-
         <TimelineCard
           description="Present your project to our panel of judges. Winners will be selected based on creativity, usability, technical execution, and impact."
           header="Week 3"
           title="Demo Day & Judging"
-          className="sm:self-end"
+          className="self-end"
+          data-animate-fadein-right
+          data-delay="3"
+          animateDelay={3}
         />
       </div>
 

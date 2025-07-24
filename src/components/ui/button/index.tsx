@@ -63,7 +63,7 @@ const Button = ({
       disabled={isDisabled}
       className={cn(
         "flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl text-base font-medium capitalize",
-        "transition-all duration-300 ease-in-out",
+        "[transition-property:opacity,box-shadow] duration-300 ease-in-out",
         "disabled:bg-bg-soft-200 disabled:cursor-not-allowed disabled:text-white",
         buttonStyles.variants[variant],
         !isLink ? "px-4 py-2.5" : "",

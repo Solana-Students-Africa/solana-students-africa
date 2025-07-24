@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { Container } from "../ui/container";
-import { useState, useEffect } from "react";
 
 const Info = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,7 +22,7 @@ const Info = () => {
     {
       index: 3,
       title: "Amazing Prizes",
-      description: "Dev kits, mech, swag, mentorship, and cash prizes for winners.",
+      description: "Dev kits, merch, swag, mentorship, and cash prizes for winners.",
     },
   ];
 
@@ -63,10 +63,13 @@ const Info = () => {
   };
 
   return (
-    <Container className="py-10" as="section" id="about">
-      <div className="hidden md:flex md:items-stretch md:gap-5">
-        {info.map((item) => (
+    <Container className="info-section py-10" as="section" id="about">
+      <div className="md:flex md:items-stretch md:gap-5">
+        {info.map((item, index) => (
           <div
+            data-animate-scale
+            data-delay={index / 10}
+            data-easing="CTA.button"
             key={item.index}
             className="relative w-full max-w-md rounded-4xl bg-transparent p-0.5 text-center text-white backdrop-blur-[100px]"
             style={{
@@ -76,9 +79,21 @@ const Info = () => {
           >
             <div className="h-full w-full rounded-4xl bg-black">
               <div className="flex h-full w-full items-center justify-center p-8">
-                <div className="text-center text-white">
-                  <div className="mb-4 text-2xl font-medium">{item.title}</div>
-                  <div className="text-base leading-relaxed font-normal">{item.description}</div>
+                <div className="flex flex-col items-center text-center text-white">
+                  <div
+                    data-animate-y-up
+                    data-delay={index / 3 + 0.3}
+                    className="mb-4 text-2xl font-medium"
+                  >
+                    {item.title}
+                  </div>
+                  <div
+                    data-animate-sentences
+                    data-delay={index / 3 + 0.5}
+                    className="text-base leading-relaxed font-normal"
+                  >
+                    {item.description}
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,7 +113,7 @@ const Info = () => {
             className="flex transition-transform duration-300 ease-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {info.map((item) => (
+            {info.map((item, index) => (
               <div key={item.index} className="w-full flex-shrink-0 px-4">
                 <div
                   className="relative mx-auto max-w-sm rounded-3xl bg-transparent p-0.5 text-center text-white backdrop-blur-[100px]"

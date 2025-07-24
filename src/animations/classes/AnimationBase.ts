@@ -39,6 +39,8 @@ export default class AnimationBase extends Component {
     "driftin-right": this.animateDriftInRight,
     "sentences-out": this.animateSentencesOut,
     "grow-width": this.animateGrowWidth,
+    "spinin-right": this.animateSpinInRight,
+    "spinin-left": this.animateSpinInLeft,
 
     // Add More base animations here
   };
@@ -64,6 +66,8 @@ export default class AnimationBase extends Component {
         animateFadeInRight: "[data-animate-fadein-right]",
         animateDriftInRight: "[data-animate-driftin-right]",
         animateSentencesOut: "[data-animate-sentences-out]",
+        animateSpinInLeft: "[data-animate-spinin-left]",
+        animateSpinInRight: "[data-animate-spinin-right]",
         animationChangeTrigger: "[data-trigger-animation-change]",
         contentChangeTrigger: "[data-trigger-content-change]",
       },
@@ -165,6 +169,8 @@ export default class AnimationBase extends Component {
       "[data-animate-fadein-right]",
       "[data-animate-driftin-right]",
       "[data-animate-sentences-out]",
+      "[data-animate-spinin-left]",
+      "[data-animate-spinin-right]",
     ];
 
     const elements: HTMLElement[] = [];
@@ -393,8 +399,6 @@ export default class AnimationBase extends Component {
     const { delay, duration, easing } = this.getAnimationValues(element);
     const allWords = element.querySelectorAll("span span");
 
-    console.log({ allWords });
-
     const words = calculateSentences(allWords);
     const stagger = Number(element.dataset.stagger) || 0.084;
 
@@ -498,6 +502,50 @@ export default class AnimationBase extends Component {
     if (text) {
       tl.to(text, { opacity: 1, duration: duration * 0.5, ease: easing }, `>-=${duration * 0.3}`);
     }
+  }
+
+  private animateSpinInRight(element: HTMLElement) {
+    const { delay, duration, easing } = this.getAnimationValues(element);
+    element.style.transformOrigin = "center center";
+
+    this.animationLibrary.core.fromTo(
+      element,
+      {
+        xPercent: 100,
+        rotation: 720,
+        opacity: 0,
+      },
+      {
+        xPercent: 0,
+        rotation: 0,
+        opacity: 1,
+        duration,
+        delay,
+        ease: easing,
+      }
+    );
+  }
+
+  private animateSpinInLeft(element: HTMLElement) {
+    const { delay, duration, easing } = this.getAnimationValues(element);
+    element.style.transformOrigin = "center center";
+
+    this.animationLibrary.core.fromTo(
+      element,
+      {
+        xPercent: -100,
+        rotation: -720,
+        opacity: 0,
+      },
+      {
+        xPercent: 0,
+        rotation: 0,
+        opacity: 1,
+        duration,
+        delay,
+        ease: easing,
+      }
+    );
   }
 
   // Utility methods remain the same...

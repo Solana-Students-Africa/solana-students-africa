@@ -69,12 +69,20 @@ const TimelineSection = () => {
       <img
         src="/images/solana-coin.png"
         alt="Solana Coin"
+        data-animate-spinin-right
+        data-delay="0.4"
+        data-duration="3"
+        data-easing="NAVIGATION.button"
         className="absolute top-24 left-[60%] z-0 h-[150px] w-[150px] opacity-50 sm:top-32 sm:left-[65%] sm:h-[250px] sm:w-[250px] sm:opacity-75 md:top-40 md:left-[70%] md:h-[400px] md:w-[400px] md:opacity-100"
       />
 
       <img
         src="/images/solana-coin.png"
         alt="Solana Coin"
+        data-animate-spinin-left
+        data-delay="3"
+        data-duration="3"
+        data-easing="NAVIGATION.button"
         className="absolute -bottom-5 -left-3 z-0 h-[150px] w-[150px] opacity-50 sm:-bottom-8 sm:-left-4 sm:h-[250px] sm:w-[250px] sm:opacity-75 md:-bottom-10 md:-left-5 md:h-[400px] md:w-[400px] md:opacity-100"
       />
     </Container>

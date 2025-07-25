@@ -2,17 +2,17 @@ import globals from "globals";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import js from "@eslint/js";
 
-import react from "eslint-plugin-react";
-import jsxA11y from "eslint-plugin-jsx-a11y";
-import importPlugin from "eslint-plugin-import";
-import reactHooks from "eslint-plugin-react-hooks";
-import prettierPlugin from "eslint-plugin-prettier";
-import prettierConfig from "eslint-config-prettier";
-import tseslintParser from "@typescript-eslint/parser";
 import tseslint from "@typescript-eslint/eslint-plugin";
+import tseslintParser from "@typescript-eslint/parser";
+import prettierConfig from "eslint-config-prettier";
+import importPlugin from "eslint-plugin-import";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import prettierPlugin from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
 import unusedImports from "eslint-plugin-unused-imports";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -62,6 +62,15 @@ const config = [
       "react/react-in-jsx-scope": "off",
       "prettier/prettier": "warn",
       "unused-imports/no-unused-imports": "warn",
+      "@typescript-eslint/ban-ts-comment": "warn",
+      " @typescript-eslint/no-unused-expressions": [
+        "warn",
+        {
+          args: "after-used",
+          ignoreRestSiblings: false,
+          argsIgnorePattern: "^_.*?$",
+        },
+      ],
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {

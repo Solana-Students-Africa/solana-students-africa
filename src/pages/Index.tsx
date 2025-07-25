@@ -1,3 +1,5 @@
+import AnimationBase from "@/animations/classes/AnimationBase";
+import { customEasings } from "@/animations/constants/easings";
 import Hero from "@/components/sections/hero";
 import Info from "@/components/sections/info";
 import PartnersAndCommunities from "@/components/sections/partners-and-communities";
@@ -5,10 +7,32 @@ import TimelineSection from "@/components/sections/timeline";
 import TracksSection from "@/components/sections/tracks";
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
+import { useEffect, useRef } from "react";
 
 const Home = () => {
+  const isInitialized = useRef(false);
+
+  useEffect(() => {
+    if (!isInitialized.current) {
+      new AnimationBase({
+        sourceElements: [
+          ".navbar-section",
+          ".hero-section",
+          ".info-section",
+          ".tracks-section",
+          ".timeline-section",
+          ".partners-section",
+          ".footer-section",
+        ],
+        easings: customEasings,
+      });
+
+      isInitialized.current = true;
+    }
+  }, []);
+
   return (
-    <div className="font-gellix flex flex-col bg-black">
+    <div className="font-gellix landing-page flex flex-col bg-black">
       <Navbar />
       <Hero />
       <Info />

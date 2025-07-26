@@ -4,12 +4,12 @@ import { Container } from "../ui/container";
 const Hero = () => {
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center bg-[url('/images/hero-background.png')] bg-cover bg-center bg-no-repeat"
+      className="relative flex min-h-[80vh] flex-col items-center justify-start bg-[url('/images/hero-background.png')] bg-cover bg-center bg-no-repeat md:min-h-screen"
       id="home"
     >
       <div className="absolute inset-0 bg-black/20 md:hidden" />
 
-      <Container className="relative z-10 flex w-full flex-col items-center justify-center gap-4 px-4 pt-16 text-center md:w-[80%] md:gap-6 md:px-6 md:pt-0 lg:w-[70%] lg:gap-7 lg:px-0 xl:w-[60%]">
+      <Container className="relative z-10 flex w-full flex-col items-center justify-center gap-4 px-4 pt-44 text-center md:w-[80%] md:gap-6 md:px-6 md:pt-26 lg:w-[70%] lg:gap-7 lg:px-0 lg:pt-30 xl:w-[60%] xl:pt-34">
         {/* Event Info Badge */}
         <div
           className="rounded-lg px-3 py-2 text-xs font-medium shadow-2xl sm:px-4 sm:py-2.5 sm:text-sm md:mt-6 md:text-xl lg:mt-8"

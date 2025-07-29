@@ -32,7 +32,7 @@ const Footer = () => {
           {/* Social Media Icons */}
           <div className="mt-2 flex items-center gap-3">
             <a
-              href="#"
+              href="https://x.com/toby_solutions"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
               aria-label="Twitter"
             >
@@ -47,7 +47,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="#"
+              href="https://linkedin.com/in/tobiloba-adedeji"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
               aria-label="LinkedIn"
             >
@@ -62,7 +62,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="#"
+              href="https://github.com/tobySolutions"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
               aria-label="GitHub"
             >

@@ -2,21 +2,69 @@ import { Container } from "../ui/container";
 
 const PartnersAndCommunities = () => {
   const communities = [
-    "Web 3 Africa",
-    "Web 3 Unilag",
-    "GDSC",
-    "WomeninDefi",
-    "University Communities",
-    "Github Campus Experts",
+    {
+      name: "Web 3 Africa",
+      logo: "/images/image 42.png",
+      bgColor: "bg-orange-50",
+    },
+    {
+      name: "Web 3 Unilag",
+      logo: "🎓",
+      bgColor: "bg-blue-50",
+    },
+    {
+      name: "GDSC",
+      logo: "/images/image 41.png",
+      bgColor: "bg-blue-50",
+    },
+    {
+      name: "WomeninDefi",
+      logo: "/images/image 44.png",
+      bgColor: "bg-purple-50",
+    },
+    {
+      name: "University Communities",
+      logo: "🏛️",
+      bgColor: "bg-gray-50",
+    },
+    {
+      name: "Github Campus Experts",
+      logo: "/images/gitcamp.png",
+      bgColor: "bg-gray-50",
+    },
   ];
 
   const participatingUniversities = [
-    "University of Lagos",
-    "Lagos State University",
-    "Yaba College of Technology",
-    "University of Ibadan",
-    "Ladoke Akintola University",
-    "And More...  ",
+    {
+      name: "University of Lagos",
+      logo: "",
+      bgColor: "bg-green-50",
+    },
+    {
+      name: "Lagos State University",
+      logo: "",
+      bgColor: "bg-blue-50",
+    },
+    {
+      name: "Yaba College of Technology",
+      logo: "",
+      bgColor: "bg-yellow-50",
+    },
+    {
+      name: "University of Ibadan",
+      logo: "",
+      bgColor: "bg-red-50",
+    },
+    {
+      name: "Ladoke Akintola University",
+      logo: "",
+      bgColor: "bg-indigo-50",
+    },
+    {
+      name: "And More...",
+      logo: "",
+      bgColor: "bg-gray-50",
+    },
   ];
 
   return (
@@ -31,9 +79,9 @@ const PartnersAndCommunities = () => {
             Partners & <br /> Communities
           </h1>
 
-          <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-[90%] sm:gap-2.5 md:w-[80%] lg:w-[70%]">
+          <div className="flex w-full flex-wrap items-center justify-center gap-3 sm:w-[90%] sm:gap-4 md:w-[80%] lg:w-[70%]">
             {communities.map((item, index) => (
-              <Card title={item} key={index} />
+              <Card title={item.name} logo={item.logo} bgColor={item.bgColor} key={index} />
             ))}
           </div>
         </div>
@@ -44,9 +92,9 @@ const PartnersAndCommunities = () => {
             <br /> Universities
           </h1>
 
-          <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-[95%] sm:gap-2.5 md:w-[90%] lg:w-[80%]">
+          <div className="flex w-full flex-wrap items-center justify-center gap-3 sm:w-[95%] sm:gap-4 md:w-[90%] lg:w-[80%]">
             {participatingUniversities.map((item, index) => (
-              <Card title={item} key={index} />
+              <Card title={item.name} logo={item.logo} bgColor={item.bgColor} key={index} />
             ))}
           </div>
         </div>
@@ -64,10 +112,30 @@ const PartnersAndCommunities = () => {
 
 export default PartnersAndCommunities;
 
-const Card = ({ title }: { title: string }) => {
+const Card = ({ title, logo, bgColor }: { title: string; logo: string; bgColor?: string }) => {
+  const isImageLogo = logo && (logo.startsWith("/") || logo.startsWith("http"));
+
   return (
-    <div className="text-off-black z-10 rounded-3xl bg-white px-3 py-2 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-shadow duration-200 hover:shadow-md sm:px-4 sm:py-3 sm:text-base md:px-6 md:py-3 md:text-lg lg:px-8 lg:py-4 lg:text-2xl">
-      <p>{title}</p>
+    <div
+      className={`text-off-black z-10 rounded-2xl bg-white ${bgColor || ""} border border-gray-100 px-4 py-3 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-lg sm:px-5 sm:py-4 sm:text-base md:px-6 md:py-4 md:text-lg lg:px-8 lg:py-5 lg:text-xl`}
+    >
+      <div className="flex items-center justify-center gap-2 md:gap-3">
+        {/* Logo */}
+        <div className="flex-shrink-0">
+          {isImageLogo ? (
+            <img
+              src={logo}
+              alt={`${title} logo`}
+              className="h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"
+            />
+          ) : (
+            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl">{logo}</span>
+          )}
+        </div>
+
+        {/* Text */}
+        <p className="font-medium text-gray-800">{title}</p>
+      </div>
     </div>
   );
 };

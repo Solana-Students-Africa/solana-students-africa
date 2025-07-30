@@ -63,8 +63,8 @@ const Info = () => {
   };
 
   return (
-    <Container className="info-section py-10" as="section" id="about">
-      <div className="md:flex md:items-stretch md:gap-5">
+    <Container className="info-section pt-3 pb-10 md:py-10" as="section" id="about">
+      <div className="hidden md:flex md:items-stretch md:gap-5">
         {info.map((item, index) => (
           <div
             data-animate-scale

@@ -2,21 +2,69 @@ import { Container } from "../ui/container";
 
 const PartnersAndCommunities = () => {
   const communities = [
-    "Web 3 Africa",
-    "Web 3 Unilag",
-    "GDSC",
-    "WomeninDefi",
-    "University Communities",
-    "Github Campus Experts",
+    {
+      name: "Web3 Afrika",
+      logo: "/images/image-42.png",
+      bgColor: "bg-orange-50",
+    },
+    {
+      name: "Web3Unilag",
+      logo: "🎓",
+      bgColor: "bg-blue-50",
+    },
+    {
+      name: "GDSC",
+      logo: "/images/image-41.png",
+      bgColor: "bg-blue-50",
+    },
+    {
+      name: "WomeninDefi",
+      logo: "/images/image-44.png",
+      bgColor: "bg-purple-50",
+    },
+    {
+      name: "University Communities",
+      logo: "🏛️",
+      bgColor: "bg-gray-50",
+    },
+    {
+      name: "Github Campus Experts",
+      logo: "/images/gitcamp.png",
+      bgColor: "bg-gray-50",
+    },
   ];
 
   const participatingUniversities = [
-    "University of Lagos",
-    "Lagos State University",
-    "Yaba College of Technology",
-    "University of Ibadan",
-    "Ladoke Akintola University",
-    "And More...  ",
+    {
+      name: "University of Lagos",
+      logo: "",
+      bgColor: "bg-green-50",
+    },
+    {
+      name: "Lagos State University",
+      logo: "",
+      bgColor: "bg-blue-50",
+    },
+    {
+      name: "University of Ilorin",
+      logo: "",
+      bgColor: "bg-red-50",
+    },
+    {
+      name: "Caleb University",
+      logo: "",
+      bgColor: "bg-indigo-50",
+    },
+    {
+      name: "Babcock University",
+      logo: "",
+      bgColor: "bg-yellow-50",
+    },
+    {
+      name: "And More...",
+      logo: "",
+      bgColor: "bg-gray-50",
+    },
   ];
 
   return (
@@ -36,19 +84,9 @@ const PartnersAndCommunities = () => {
             </h1>
           </h1>
 
-          <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-[90%] sm:gap-2.5 md:w-[80%] lg:w-[70%]">
+          <div className="flex w-full flex-wrap items-center justify-center gap-3 sm:w-[90%] sm:gap-4 md:w-[90%]">
             {communities.map((item, index) => (
-              <div
-                data-animate-scale
-                data-delay={index / 10 + 0.4}
-                data-easing="CTA.button"
-                key={index}
-                className="text-off-black z-10 rounded-3xl bg-white px-3 py-2 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-shadow duration-200 hover:shadow-md sm:px-4 sm:py-3 sm:text-base md:px-6 md:py-3 md:text-lg lg:px-8 lg:py-4 lg:text-2xl"
-              >
-                <p data-animate-text data-delay={index / 10 + 0.6} data-easing="CTA.text">
-                  {item}
-                </p>
-              </div>
+              <Card title={item.name} logo={item.logo} key={index} />
             ))}
           </div>
         </div>
@@ -65,17 +103,7 @@ const PartnersAndCommunities = () => {
 
           <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-[95%] sm:gap-2.5 md:w-[90%]">
             {participatingUniversities.map((item, index) => (
-              <div
-                data-animate-scale
-                data-delay={index / 10 + 0.9}
-                data-easing="CTA.button"
-                key={index}
-                className="text-off-black z-10 rounded-3xl bg-white px-3 py-2 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-shadow duration-200 hover:shadow-md sm:px-4 sm:py-3 sm:text-base md:px-6 md:py-3 md:text-lg lg:px-8 lg:py-4 lg:text-2xl"
-              >
-                <p data-animate-text data-delay={index / 10 + 0.9} data-easing="CTA.text">
-                  {item}
-                </p>
-              </div>
+              <Card title={item.name} logo={item.logo} key={index} />
             ))}
           </div>
         </div>
@@ -92,3 +120,19 @@ const PartnersAndCommunities = () => {
 };
 
 export default PartnersAndCommunities;
+
+const Card = ({ title, logo }: { title: string; logo: string }) => {
+  return (
+    <div className="text-off-black z-10 flex items-center gap-3 rounded-3xl bg-white px-3 py-2 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-shadow duration-200 hover:shadow-md sm:px-4 sm:py-3 sm:text-base md:px-6 md:py-3 md:text-lg lg:px-8 lg:py-4 lg:text-2xl">
+      {logo &&
+        (logo.startsWith("/") ? (
+          <div className="h-6 w-6">
+            <img src={logo} alt={title} className="mx-auto mb-1 h-full w-full object-contain" />
+          </div>
+        ) : (
+          <span className="mb-1 block text-xl">{logo}</span>
+        ))}
+      <p>{title}</p>
+    </div>
+  );
+};

@@ -77,10 +77,18 @@ const Navbar = () => {
         className={`navbar-section fixed top-0 right-0 left-0 z-50 flex w-full justify-center transition-all duration-300 ${
           isScrolled ? "bg-black/70 shadow-2xl backdrop-blur-md" : "bg-transparent"
         }`}
-        style={{ padding: isScrolled ? "20px 0" : "40px 0 0 0" }}
+        style={{ padding: isScrolled ? "5px 0" : "10px 0 0 0" }}
       >
         <Container as="nav" className="flex items-center justify-between">
           <div className="flex items-center gap-3">
+            <img
+              src="/images/logo.png"
+              alt="Solana Students Africa Logo"
+              className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28"
+              data-animate-y-up
+              data-delay="0.05"
+              data-easing="NAVIGATION.button"
+            />
             <div
               className="text-lg font-medium text-white md:text-xl lg:text-2xl"
               data-animate-y-up

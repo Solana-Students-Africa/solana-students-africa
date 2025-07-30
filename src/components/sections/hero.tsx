@@ -9,7 +9,7 @@ const Hero = () => {
     >
       <div className="absolute inset-0 bg-black/20 md:hidden" />
 
-      <Container className="relative z-10 flex w-full flex-col items-center justify-center gap-4 px-4 pt-16 text-center md:w-[80%] md:gap-6 md:px-6 md:pt-0 lg:w-[70%] lg:gap-7 lg:px-0 xl:w-[60%]">
+      <Container className="-pt-8 relative z-10 flex w-full flex-col items-center justify-center gap-4 px-4 text-center md:w-[80%] md:gap-6 md:px-6 md:pt-40 lg:w-[70%] lg:gap-7 lg:px-0 xl:w-[60%]">
         {/* Event Info Badge */}
         <div
           data-animate-grow-width
@@ -70,7 +70,8 @@ const Hero = () => {
             data-delay="0.7"
             data-easing="CTA.button"
             variant="secondary"
-            className="w-full text-sm font-semibold sm:w-auto sm:text-base md:text-lg"
+            glowOnHover
+            className="w-full text-sm font-semibold hover:opacity-90 sm:w-auto sm:text-base md:text-lg"
           >
             View Details
           </Button>

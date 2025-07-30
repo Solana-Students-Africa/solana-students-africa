@@ -1,33 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Container } from "./container";
 
 const Navbar = () => {
-  const routes = [
-    {
-      name: "Home",
-      href: "#home",
-    },
-    {
-      name: "About",
-      href: "#about",
-    },
-    {
-      name: "Tracks",
-      href: "#tracks",
-    },
-    {
-      name: "Timeline",
-      href: "#timeline",
-    },
-    {
-      name: "Partners",
-      href: "#partners",
-    },
-    {
-      name: "Contact",
-      href: "#contact",
-    },
-  ];
+  const routes = useMemo(() => {
+    return [
+      {
+        name: "Home",
+        href: "#home",
+      },
+      {
+        name: "About",
+        href: "#about",
+      },
+      {
+        name: "Tracks",
+        href: "#tracks",
+      },
+      {
+        name: "Timeline",
+        href: "#timeline",
+      },
+      {
+        name: "Partners",
+        href: "#partners",
+      },
+      {
+        name: "Contact",
+        href: "#contact",
+      },
+    ];
+  }, []);
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -72,27 +74,38 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`fixed top-0 right-0 left-0 z-50 flex w-full justify-center transition-all duration-300 ${
+        className={`navbar-section fixed top-0 right-0 left-0 z-50 flex w-full justify-center transition-all duration-300 ${
           isScrolled ? "bg-black/70 shadow-2xl backdrop-blur-md" : "bg-transparent"
         }`}
-        style={{ padding: isScrolled ? "5px 0" : "8px 0 0 0" }}
+        style={{ padding: isScrolled ? "5px 0" : "10px 0 0 0" }}
       >
-        <Container as="nav" className="flex items-center justify-between px-4 md:px-6 lg:px-8">
-          <div className="flex items-center gap-4">
+        <Container as="nav" className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <img
               src="/images/logo.png"
               alt="Solana Students Africa Logo"
-              className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28"
+              className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28"
+              data-animate-y-up
+              data-delay="0.05"
+              data-easing="NAVIGATION.button"
             />
-            <div className="text-lg font-medium text-white md:text-xl lg:text-2xl">
+            <div
+              className="text-lg font-medium text-white md:text-xl lg:text-2xl"
+              data-animate-y-up
+              data-delay="0.1"
+              data-easing="NAVIGATION.button"
+            >
               Solana Students Africa
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center space-x-4 md:flex md:space-x-6 lg:space-x-12">
-            {routes.map((route) => (
+            {routes.map((route, index) => (
               <a
+                data-animate-y-up
+                data-delay={index / 10 + 0.1}
+                data-easing="NAVIGATION.button"
                 key={route.name}
                 href={route.href}
                 className={`group relative text-sm transition-colors md:text-base lg:text-lg ${

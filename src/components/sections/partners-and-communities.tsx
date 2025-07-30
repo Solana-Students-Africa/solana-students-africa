@@ -69,32 +69,41 @@ const PartnersAndCommunities = () => {
 
   return (
     <Container
-      className="relative flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-20"
+      className="partners-section relative flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-20"
       as="section"
       id="partners"
     >
       <div className="z-10 flex w-full max-w-6xl flex-col justify-between gap-12 sm:gap-16 md:gap-20">
         <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-14">
-          <h1 className="font-poppins max-w-4xl text-center text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
-            Partners & <br /> Communities
+          <h1 className="font-poppins flex max-w-4xl flex-col items-center text-center text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 data-animate-y-up data-delay="0.2" data-easing="NAVIGATION.button">
+              Partners &
+            </h1>
+            <h1 data-animate-y-up data-delay="0.3" data-easing="NAVIGATION.button">
+              Communities
+            </h1>
           </h1>
 
           <div className="flex w-full flex-wrap items-center justify-center gap-3 sm:w-[90%] sm:gap-4 md:w-[80%] lg:w-[70%]">
             {communities.map((item, index) => (
-              <Card title={item.name} logo={item.logo} bgColor={item.bgColor} key={index} />
+              <Card title={item.name} logo={item.logo} key={index} />
             ))}
           </div>
         </div>
 
         <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-14">
-          <h1 className="font-poppins max-w-4xl text-center text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl">
-            Participating
-            <br /> Universities
+          <h1 className="font-poppins flex max-w-4xl flex-col items-center text-center text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 data-animate-y-up data-delay="0.7" data-easing="NAVIGATION.button">
+              Participating
+            </h1>
+            <h1 data-animate-y-up data-delay="0.8" data-easing="NAVIGATION.button">
+              Universities
+            </h1>
           </h1>
 
-          <div className="flex w-full flex-wrap items-center justify-center gap-3 sm:w-[95%] sm:gap-4 md:w-[90%] lg:w-[80%]">
+          <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-[95%] sm:gap-2.5 md:w-[90%] lg:w-[80%]">
             {participatingUniversities.map((item, index) => (
-              <Card title={item.name} logo={item.logo} bgColor={item.bgColor} key={index} />
+              <Card title={item.name} logo={item.logo} key={index} />
             ))}
           </div>
         </div>
@@ -112,30 +121,16 @@ const PartnersAndCommunities = () => {
 
 export default PartnersAndCommunities;
 
-const Card = ({ title, logo, bgColor }: { title: string; logo: string; bgColor?: string }) => {
-  const isImageLogo = logo && (logo.startsWith("/") || logo.startsWith("http"));
-
+const Card = ({ title, logo }: { title: string; logo: string }) => {
   return (
-    <div
-      className={`text-off-black z-10 rounded-2xl bg-white ${bgColor || ""} border border-gray-100 px-4 py-3 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-lg sm:px-5 sm:py-4 sm:text-base md:px-6 md:py-4 md:text-lg lg:px-8 lg:py-5 lg:text-xl`}
-    >
-      <div className="flex items-center justify-center gap-2 md:gap-3">
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          {isImageLogo ? (
-            <img
-              src={logo}
-              alt={`${title} logo`}
-              className="h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"
-            />
-          ) : (
-            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl">{logo}</span>
-          )}
-        </div>
-
-        {/* Text */}
-        <p className="font-medium text-gray-800">{title}</p>
-      </div>
+    <div className="text-off-black z-10 rounded-3xl bg-white px-3 py-2 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-shadow duration-200 hover:shadow-md sm:px-4 sm:py-3 sm:text-base md:px-6 md:py-3 md:text-lg lg:px-8 lg:py-4 lg:text-2xl">
+      {logo &&
+        (logo.startsWith("/") ? (
+          <img src={logo} alt={title} className="mx-auto mb-1 h-6 w-6" />
+        ) : (
+          <span className="mb-1 block text-xl">{logo}</span>
+        ))}
+      <p>{title}</p>
     </div>
   );
 };

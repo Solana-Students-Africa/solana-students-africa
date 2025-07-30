@@ -3,29 +3,52 @@ import { Container } from "./container";
 
 const Footer = () => {
   return (
-    <div className="py-20 sm:py-32 md:py-40">
+    <div className="footer-section py-20 sm:py-32 md:py-40">
       <Container
         className="relative flex flex-col items-start justify-between gap-12 px-4 lg:flex-row lg:gap-8"
         as="section"
         id="contact"
       >
         <div className="z-10 flex w-full flex-col items-start justify-start gap-4 text-left lg:w-1/2">
-          <h1 className="max-w-2xl text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1
+            data-animate-text
+            className="max-w-2xl text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl"
+          >
             Get in Touch
           </h1>
-          <p className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]">
+          <p
+            data-animate-sentences
+            data-delay="0.3"
+            className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]"
+          >
             Ready to Join the future of blockchain development in Africa?
           </p>
-          <Button variant="secondary" className="mt-2 w-full sm:w-auto">
-            Join our Community
+          <Button
+            data-animate-scale
+            data-delay="0.6"
+            data-easing="NAVIGATION.button"
+            variant="secondary"
+            className="mt-2 w-full sm:w-auto"
+          >
+            <span data-animate-text data-delay="0.7" data-easing="NAVIGATION.button">
+              Join our Community
+            </span>
           </Button>
         </div>
 
         <div className="z-10 flex w-full flex-col items-start justify-start gap-4 text-left lg:w-1/2 lg:items-end lg:justify-end lg:text-right">
-          <h1 className="max-w-2xl text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+          <h1
+            data-animate-text
+            data-delay="0.2"
+            className="max-w-2xl text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+          >
             Tobiloba Adedeji
           </h1>
-          <p className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]">
+          <p
+            data-animate-sentences
+            data-delay="0.4"
+            className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]"
+          >
             Lead Hackathon Organizer and Student Coordinator
           </p>
 

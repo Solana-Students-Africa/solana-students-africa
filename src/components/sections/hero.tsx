@@ -70,7 +70,8 @@ const Hero = () => {
             data-delay="0.7"
             data-easing="CTA.button"
             variant="secondary"
-            className="w-full text-sm font-semibold sm:w-auto sm:text-base md:text-lg"
+            glowOnHover
+            className="w-full text-sm font-semibold hover:opacity-90 sm:w-auto sm:text-base md:text-lg"
           >
             View Details
           </Button>

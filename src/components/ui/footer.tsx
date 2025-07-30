@@ -29,6 +29,7 @@ const Footer = () => {
             data-easing="NAVIGATION.button"
             variant="secondary"
             className="mt-2 w-full sm:w-auto"
+            glowOnHover
           >
             <span data-animate-text data-delay="0.7" data-easing="NAVIGATION.button">
               Join our Community
@@ -55,7 +56,7 @@ const Footer = () => {
           {/* Social Media Icons */}
           <div className="mt-2 flex items-center gap-3">
             <a
-              href="https://x.com/toby_solutions"
+              href="https://x.com/SolanaStudentAf"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
               aria-label="Twitter"
             >
@@ -70,7 +71,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://linkedin.com/in/tobiloba-adedeji"
+              href="https://www.linkedin.com/in/solana-students-africa-8454a42a1/"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
               aria-label="LinkedIn"
             >

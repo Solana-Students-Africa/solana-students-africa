@@ -9,13 +9,12 @@ const Hero = () => {
     >
       <div className="absolute inset-0 bg-black/20 md:hidden" />
 
-      <Container className="-pt-8 relative z-10 flex w-full flex-col items-center justify-center gap-4 px-4 text-center md:w-[80%] md:gap-6 md:px-6 md:pt-40 lg:w-[70%] lg:gap-7 lg:px-0 xl:w-[60%]">
-        {/* Event Info Badge */}
+      <Container className="-pt-8 relative z-10 flex w-full flex-col items-center justify-center gap-4 px-4 text-center md:w-[80%] md:gap-6 md:px-6 md:pt-30 lg:w-[70%] lg:gap-7 lg:px-0 xl:w-[60%]">
         <div
           data-animate-grow-width
           data-duration="0.5"
           data-delay="1.3"
-          className="rounded-lg px-3 py-2 text-xs font-medium shadow-2xl sm:px-4 sm:py-2.5 sm:text-sm md:mt-6 md:text-xl lg:mt-8"
+          className="-mt-56 rounded-lg px-3 py-2 text-xs font-medium shadow-2xl sm:mt-0 sm:px-4 sm:py-2.5 sm:text-sm md:mt-6 md:text-xl lg:mt-8"
           style={{
             background:
               "radial-gradient(47.61% 408.42% at 47.72% 18.09%, #0C41D1 0%, #08277F 50%, rgba(6, 33, 107, 0) 85.83%)",

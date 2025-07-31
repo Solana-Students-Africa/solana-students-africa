@@ -3,33 +3,39 @@ import { Container } from "../ui/container";
 const PartnersAndCommunities = () => {
   const communities = [
     {
+      name: "SuperteamNG",
+      logo: "/images/superteam.jpg",
+
+      bgColor: "bg-orange-50",
+    },
+    {
       name: "Web3 Afrika",
       logo: "/images/image-42.png",
+
       bgColor: "bg-orange-50",
     },
     {
       name: "Web3Unilag",
       logo: "🎓",
+
       bgColor: "bg-blue-50",
     },
     {
       name: "GDSC",
       logo: "/images/image-41.png",
+
       bgColor: "bg-blue-50",
     },
     {
       name: "WomeninDefi",
       logo: "/images/image-44.png",
+
       bgColor: "bg-purple-50",
-    },
-    {
-      name: "University Communities",
-      logo: "🏛️",
-      bgColor: "bg-gray-50",
     },
     {
       name: "Github Campus Experts",
       logo: "/images/gitcamp.png",
+
       bgColor: "bg-gray-50",
     },
   ];
@@ -37,32 +43,32 @@ const PartnersAndCommunities = () => {
   const participatingUniversities = [
     {
       name: "University of Lagos",
-      logo: "",
+      logo: "/images/unilag-logo.jpeg",
       bgColor: "bg-green-50",
     },
     {
       name: "Lagos State University",
-      logo: "",
+      logo: "/images/lasu-logo.jpeg",
       bgColor: "bg-blue-50",
     },
     {
       name: "University of Ilorin",
-      logo: "",
+      logo: "/images/ilorin-logo.jpeg",
       bgColor: "bg-red-50",
     },
     {
       name: "Caleb University",
-      logo: "",
+      logo: "/images/caleb-logo.png",
       bgColor: "bg-indigo-50",
     },
     {
       name: "Babcock University",
-      logo: "",
+      logo: "/images/babcock-logo.png",
       bgColor: "bg-yellow-50",
     },
     {
       name: "And More...",
-      logo: "",
+      logo: "🎓",
       bgColor: "bg-gray-50",
     },
   ];
@@ -84,9 +90,9 @@ const PartnersAndCommunities = () => {
             </h1>
           </h1>
 
-          <div className="flex w-full flex-wrap items-center justify-center gap-3 sm:w-[90%] sm:gap-4 md:w-[90%]">
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {communities.map((item, index) => (
-              <Card title={item.name} logo={item.logo} key={index} />
+              <CommunityCard title={item.name} logo={item.logo} key={index} />
             ))}
           </div>
         </div>
@@ -121,6 +127,31 @@ const PartnersAndCommunities = () => {
 
 export default PartnersAndCommunities;
 
+const CommunityCard = ({ title, logo }: { title: string; logo: string }) => {
+  return (
+    <div className="group relative overflow-hidden rounded-2xl border border-gray-200/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-200/30 hover:bg-white/10">
+      <div className="flex flex-col items-center space-y-4 text-center">
+        <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
+          {logo &&
+            (logo.startsWith("/") ? (
+              <img src={logo} alt={title} className="h-16 w-16 object-contain" />
+            ) : (
+              <span className="text-5xl">{logo}</span>
+            ))}
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-lg font-semibold text-white">{title}</h3>
+        </div>
+      </div>
+
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+    </div>
+  );
+};
+
+// Keep the original Card component for universities
 const Card = ({ title, logo }: { title: string; logo: string }) => {
   return (
     <div className="text-off-black z-10 flex items-center gap-3 rounded-3xl bg-white px-3 py-2 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-shadow duration-200 hover:shadow-md sm:px-4 sm:py-3 sm:text-base md:px-6 md:py-3 md:text-lg lg:px-8 lg:py-4 lg:text-2xl">

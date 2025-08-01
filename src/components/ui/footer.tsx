@@ -10,53 +10,26 @@ const Footer = () => {
         id="contact"
       >
         <div className="z-10 flex w-full flex-col items-start justify-start gap-4 text-left lg:w-1/2">
-          <h1
-            data-animate-text
-            className="max-w-2xl text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl"
-          >
+          <h1 className="max-w-2xl text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
             Get in Touch
           </h1>
-          <p
-            data-animate-sentences
-            data-delay="0.3"
-            className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]"
-          >
+          <p className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]">
             Ready to Join the future of blockchain development in Africa?
           </p>
-          <Button
-            data-animate-scale
-            data-delay="0.6"
-            data-easing="NAVIGATION.button"
-            variant="secondary"
-            className="mt-2 w-full sm:w-auto"
-            glowOnHover
-          >
-            <span data-animate-text data-delay="0.7" data-easing="NAVIGATION.button">
-              Join our Community
-            </span>
-          </Button>
         </div>
 
         <div className="z-10 flex w-full flex-col items-start justify-start gap-4 text-left lg:w-1/2 lg:items-end lg:justify-end lg:text-right">
-          <h1
-            data-animate-text
-            data-delay="0.2"
-            className="max-w-2xl text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
-          >
+          <h1 className="max-w-2xl text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             Tobiloba Adedeji
           </h1>
-          <p
-            data-animate-sentences
-            data-delay="0.4"
-            className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]"
-          >
+          <p className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]">
             Lead Hackathon Organizer and Student Coordinator
           </p>
 
           {/* Social Media Icons */}
           <div className="mt-2 flex items-center gap-3">
             <a
-              href="https://x.com/SolanaStudentAf"
+              href="https://x.com/toby_solutions"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
               aria-label="Twitter"
             >
@@ -71,7 +44,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/solana-students-africa-8454a42a1/"
+              href="https://www.linkedin.com/in/tobiloba-adedeji/"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
               aria-label="LinkedIn"
             >

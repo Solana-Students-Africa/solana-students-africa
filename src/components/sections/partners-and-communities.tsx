@@ -82,12 +82,8 @@ const PartnersAndCommunities = () => {
       <div className="z-10 flex w-full max-w-6xl flex-col justify-between gap-12 sm:gap-16 md:gap-20">
         <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-14">
           <h1 className="font-poppins flex max-w-4xl flex-col items-center text-center text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
-            <h1 data-animate-y-up data-delay="0.2" data-easing="NAVIGATION.button">
-              Partners &
-            </h1>
-            <h1 data-animate-y-up data-delay="0.3" data-easing="NAVIGATION.button">
-              Communities
-            </h1>
+            <h1>Partners &</h1>
+            <h1>Communities</h1>
           </h1>
 
           <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -99,12 +95,8 @@ const PartnersAndCommunities = () => {
 
         <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-14">
           <h1 className="font-poppins flex max-w-4xl flex-col items-center text-center text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl">
-            <h1 data-animate-y-up data-delay="0.7" data-easing="NAVIGATION.button">
-              Participating
-            </h1>
-            <h1 data-animate-y-up data-delay="0.8" data-easing="NAVIGATION.button">
-              Universities
-            </h1>
+            <h1>Participating</h1>
+            <h1>Universities</h1>
           </h1>
 
           <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-[95%] sm:gap-2.5 md:w-[90%]">
@@ -151,19 +143,26 @@ const CommunityCard = ({ title, logo }: { title: string; logo: string }) => {
   );
 };
 
-// Keep the original Card component for universities
 const Card = ({ title, logo }: { title: string; logo: string }) => {
   return (
-    <div className="text-off-black z-10 flex items-center gap-3 rounded-3xl bg-white px-3 py-2 text-center text-sm font-medium whitespace-nowrap shadow-sm transition-shadow duration-200 hover:shadow-md sm:px-4 sm:py-3 sm:text-base md:px-6 md:py-3 md:text-lg lg:px-8 lg:py-4 lg:text-2xl">
-      {logo &&
-        (logo.startsWith("/") ? (
-          <div className="h-6 w-6">
-            <img src={logo} alt={title} className="mx-auto mb-1 h-full w-full object-contain" />
-          </div>
-        ) : (
-          <span className="mb-1 block text-xl">{logo}</span>
-        ))}
-      <p>{title}</p>
+    <div className="group **h-64 w-64** relative overflow-hidden rounded-2xl border border-gray-200/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-200/30 hover:bg-white/10">
+      {" "}
+      {/* Added fixed height and width */}
+      <div className="flex flex-col items-center space-y-4 text-center">
+        <div className="flex h-24 w-24 items-center justify-center">
+          {logo &&
+            (logo.startsWith("/") ? (
+              <img src={logo} alt={title} className="h-16 w-16 object-contain" />
+            ) : (
+              <span className="text-5xl">{logo}</span>
+            ))}
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="**truncate** text-lg font-semibold text-white">{title}</h3>
+        </div>
+      </div>
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
     </div>
   );
 };

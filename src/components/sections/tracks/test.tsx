@@ -54,9 +54,6 @@ const SolanaAIGrid = () => {
       <div className="hidden lg:grid lg:h-[600px] lg:grid-cols-3 lg:grid-rows-3 lg:justify-between lg:gap-3">
         {cards.map((card, index) => (
           <div
-            data-animate-scale
-            data-delay={index / 10 + 0.5}
-            data-easing="NAVIGATION.button"
             key={card.id}
             className={`bg-gradient-to-br ${card.gradient} group relative flex items-center justify-center overflow-hidden rounded-3xl p-8 ${card.span}`}
           >

@@ -67,9 +67,6 @@ const Info = () => {
       <div className="hidden md:flex md:items-stretch md:gap-5">
         {info.map((item, index) => (
           <div
-            data-animate-scale
-            data-delay={index / 10}
-            data-easing="CTA.button"
             key={item.index}
             className="relative w-full max-w-md rounded-4xl bg-transparent p-0.5 text-center text-white backdrop-blur-[100px]"
             style={{
@@ -80,20 +77,8 @@ const Info = () => {
             <div className="h-full w-full rounded-4xl bg-black">
               <div className="flex h-full w-full items-center justify-center p-8">
                 <div className="flex flex-col items-center text-center text-white">
-                  <div
-                    data-animate-y-up
-                    data-delay={index / 3 + 0.3}
-                    className="mb-4 text-2xl font-medium"
-                  >
-                    {item.title}
-                  </div>
-                  <div
-                    data-animate-sentences
-                    data-delay={index / 3 + 0.5}
-                    className="text-base leading-relaxed font-normal"
-                  >
-                    {item.description}
-                  </div>
+                  <div className="mb-4 text-2xl font-medium">{item.title}</div>
+                  <div className="text-base leading-relaxed font-normal">{item.description}</div>
                 </div>
               </div>
             </div>

@@ -131,7 +131,7 @@ const CommunityCard = ({ title, logo }: { title: string; logo: string }) => {
   return (
     <div className="group relative overflow-hidden rounded-2xl border border-gray-200/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-200/30 hover:bg-white/10">
       <div className="flex flex-col items-center space-y-4 text-center">
-        <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
+        <div className="flex h-24 w-24 items-center justify-center">
           {logo &&
             (logo.startsWith("/") ? (
               <img src={logo} alt={title} className="h-16 w-16 object-contain" />

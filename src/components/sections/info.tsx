@@ -63,7 +63,7 @@ const Info = () => {
   };
 
   return (
-    <Container className="info-section pt-3 pb-10 md:py-10" as="section" id="about">
+    <Container className="info-section -mt-35 pt-0 pb-10 md:mt-0 md:py-10" as="section" id="about">
       <div className="hidden md:flex md:items-stretch md:gap-5">
         {info.map((item, index) => (
           <div

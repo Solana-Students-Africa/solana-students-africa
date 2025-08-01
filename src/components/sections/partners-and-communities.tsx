@@ -16,7 +16,7 @@ const PartnersAndCommunities = () => {
     },
     {
       name: "Web3Unilag",
-      logo: "🎓",
+      logo: "/images/web3-unilag.jpg",
 
       bgColor: "bg-blue-50",
     },
@@ -145,9 +145,7 @@ const CommunityCard = ({ title, logo }: { title: string; logo: string }) => {
 
 const Card = ({ title, logo }: { title: string; logo: string }) => {
   return (
-    <div className="group **h-64 w-64** relative overflow-hidden rounded-2xl border border-gray-200/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-200/30 hover:bg-white/10">
-      {" "}
-      {/* Added fixed height and width */}
+    <div className="group relative h-64 w-64 overflow-hidden rounded-2xl border border-gray-200/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-200/30 hover:bg-white/10">
       <div className="flex flex-col items-center space-y-4 text-center">
         <div className="flex h-24 w-24 items-center justify-center">
           {logo &&
@@ -158,8 +156,8 @@ const Card = ({ title, logo }: { title: string; logo: string }) => {
             ))}
         </div>
 
-        <div className="space-y-2">
-          <h3 className="**truncate** text-lg font-semibold text-white">{title}</h3>
+        <div className="w-full space-y-2">
+          <h3 className="truncate text-lg font-semibold text-white">{title}</h3>
         </div>
       </div>
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>

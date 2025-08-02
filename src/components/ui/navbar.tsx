@@ -63,12 +63,38 @@ const Navbar = () => {
     return activeSection === href.substring(1);
   };
 
+  const getNavbarOffset = () => {
+    const width = window.innerWidth;
+    if (width >= 1280) return 140;
+    if (width >= 1024) return 120;
+    if (width >= 768) return 100;
+    if (width >= 640) return 80;
+    return 70;
+  };
+
+  const handleSmoothScroll = (href: string) => {
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const navbarHeight = getNavbarOffset();
+      const elementPosition = element.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const handleMobileMenuClick = (href: string) => {
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    setTimeout(() => handleSmoothScroll(href), 100);
+  };
+
+  const handleDesktopClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    handleSmoothScroll(href);
   };
 
   return (
@@ -97,6 +123,7 @@ const Navbar = () => {
               <a
                 key={route.name}
                 href={route.href}
+                onClick={(e) => handleDesktopClick(e, route.href)}
                 className={`group relative text-sm transition-colors md:text-base lg:text-lg ${
                   isActive(route.href) ? "text-white" : "text-white/90 hover:text-white"
                 }`}
@@ -191,7 +218,6 @@ const Navbar = () => {
                       ? "border-l-2 border-white pl-4 text-white"
                       : "pl-4 text-white/80 hover:text-white"
                   }`}
-                  style={{}}
                 >
                   {route.name}
                 </a>

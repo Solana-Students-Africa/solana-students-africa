@@ -14,6 +14,27 @@ const TracksSection = () => {
         <h1>One Solana Chain</h1>
       </h1>
 
+      {/* Prize Pool Badge */}
+      <div className="relative mb-6">
+        <div
+          className="rounded-full border-2 border-yellow-400/50 px-6 py-3 text-center shadow-2xl"
+          style={{
+            background: "linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%)",
+          }}
+        >
+          <span className="text-lg font-bold text-yellow-900 sm:text-xl md:text-2xl">
+            💰 $10,000 Prize Pool 💰
+          </span>
+        </div>
+        {/* Static glow effect */}
+        <div
+          className="absolute inset-0 -z-10 rounded-full opacity-40 blur-lg"
+          style={{
+            background: "linear-gradient(135deg, #FFD700, #FFA500)",
+          }}
+        />
+      </div>
+
       <p className="mb-8 w-full max-w-2xl px-2 text-center text-base font-medium sm:w-[80%] sm:px-4 sm:text-lg md:w-[60%] md:px-0 md:text-xl lg:w-[40%]">
         Choose your track and build innovative solutions using solana and AI technologies
       </p>

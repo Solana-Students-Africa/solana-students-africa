@@ -15,6 +15,12 @@ const PartnersAndCommunities = () => {
       bgColor: "bg-orange-50",
     },
     {
+      name: "WomeninDefi",
+      logo: "/images/women-defi.webp",
+
+      bgColor: "bg-purple-50",
+    },
+    {
       name: "Web3Unilag",
       logo: "/images/web3-unilag.jpg",
 
@@ -26,12 +32,7 @@ const PartnersAndCommunities = () => {
 
       bgColor: "bg-blue-50",
     },
-    {
-      name: "WomeninDefi",
-      logo: "/images/image-44.png",
 
-      bgColor: "bg-purple-50",
-    },
     {
       name: "Github Campus Experts",
       logo: "/images/gitcamp.png",

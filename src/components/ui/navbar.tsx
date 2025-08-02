@@ -40,22 +40,42 @@ const Navbar = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
 
+      const navbarHeight = getNavbarOffset();
       const sections = routes.map((route) => route.href.substring(1));
-      const currentSection = sections.find((section) => {
-        const element = document.getElementById(section);
+
+      let currentSection = "home";
+      let maxVisibleArea = 0;
+
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          const sectionTop = rect.top;
+          const sectionBottom = rect.bottom;
+          const viewportHeight = window.innerHeight;
+
+          const visibleTop = Math.max(sectionTop, navbarHeight);
+          const visibleBottom = Math.min(sectionBottom, viewportHeight);
+          const visibleArea = Math.max(0, visibleBottom - visibleTop);
+
+          // If this section has more visible area and is actually visible
+          if (visibleArea > maxVisibleArea && visibleArea > 50) {
+            maxVisibleArea = visibleArea;
+            currentSection = sectionId;
+          }
+
+          // Special case: if we're at the very top, always show home
+          if (window.scrollY < 100) {
+            currentSection = "home";
+          }
         }
-        return false;
       });
 
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
+      setActiveSection(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [routes]);
 
@@ -77,6 +97,8 @@ const Navbar = () => {
     const element = document.getElementById(targetId);
 
     if (element) {
+      setActiveSection(targetId);
+
       const navbarHeight = getNavbarOffset();
       const elementPosition = element.offsetTop - navbarHeight;
 

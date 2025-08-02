@@ -25,7 +25,7 @@ const Hero = () => {
           <span className="block sm:hidden">
             Build the Future on
             <br />
-            <span className="text-blue-400">Solana</span>
+            <span>Solana</span>
           </span>
           <span className="hidden sm:block">Build the Future on Solana</span>
         </h1>
@@ -34,7 +34,7 @@ const Hero = () => {
           <span className="block sm:hidden">
             Join Nigeria's premier student hackathon for Solana Blockchain & AI development.
             <br />
-            <span className="text-blue-300">No experience needed!</span>
+            <span>No experience needed!</span>
           </span>
           <span className="hidden sm:block">
             Join Nigeria's premier student hackathon focused on Solana Blockchain development and AI

@@ -39,6 +39,11 @@ const PartnersAndCommunities = () => {
 
       bgColor: "bg-gray-50",
     },
+    {
+      name: "Beyond The Classroom",
+      logo: "/images/beyond-class.jpg",
+      bgColor: "bg-gray-50",
+    },
   ];
 
   const participatingUniversities = [

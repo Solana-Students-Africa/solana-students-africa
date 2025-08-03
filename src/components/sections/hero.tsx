@@ -17,8 +17,8 @@ const Hero = () => {
               "radial-gradient(47.61% 408.42% at 47.72% 18.09%, #0C41D1 0%, #08277F 50%, rgba(6, 33, 107, 0) 85.83%)",
           }}
         >
-          <span className="block sm:hidden">September 2025 | University of Lagos</span>
-          <span className="hidden sm:block">September 2025 | University of Lagos</span>
+          <span className="block sm:hidden">September 4, 2025 | University of Lagos</span>
+          <span className="hidden sm:block">September 4, 2025 | University of Lagos</span>
         </div>
 
         <h1 className="font-poppins text-3xl leading-tight font-semibold sm:text-4xl sm:leading-tight md:text-6xl md:leading-none lg:text-8xl xl:text-[110px]">

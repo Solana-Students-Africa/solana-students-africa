@@ -5,44 +5,36 @@ const PartnersAndCommunities = () => {
     {
       name: "SuperteamNG",
       logo: "/images/superteam.jpg",
-
       bgColor: "bg-orange-50",
     },
     {
       name: "Web3 Afrika",
       logo: "/images/image-42.png",
-
       bgColor: "bg-orange-50",
     },
     {
       name: "WomeninDefi",
       logo: "/images/women-defi.webp",
-
       bgColor: "bg-purple-50",
     },
     {
       name: "Web3Unilag",
       logo: "/images/web3-unilag.jpg",
-
       bgColor: "bg-blue-50",
     },
     {
       name: "GDSC",
       logo: "/images/image-41.png",
-
       bgColor: "bg-blue-50",
     },
-
     {
       name: "Github Campus Experts",
       logo: "/images/gitcamp.png",
-
       bgColor: "bg-gray-50",
     },
     {
-      name: "nithub",
+      name: "Nithub",
       logo: "/images/nithub.jpg",
-
       bgColor: "bg-gray-50",
     },
   ];
@@ -93,7 +85,8 @@ const PartnersAndCommunities = () => {
             <h1>Communities</h1>
           </h1>
 
-          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/*change col-start when adding a new community*/}
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>:nth-child(7)]:col-start-2 lg:[&>:nth-child(7)]:w-full lg:[&>:nth-child(7)]:max-w-none lg:[&>:nth-child(7)]:justify-self-center">
             {communities.map((item, index) => (
               <CommunityCard title={item.name} logo={item.logo} key={index} />
             ))}

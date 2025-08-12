@@ -39,6 +39,12 @@ const PartnersAndCommunities = () => {
 
       bgColor: "bg-gray-50",
     },
+    {
+      name: "nithub",
+      logo: "/images/nithub.jpg",
+
+      bgColor: "bg-gray-50",
+    },
   ];
 
   const participatingUniversities = [

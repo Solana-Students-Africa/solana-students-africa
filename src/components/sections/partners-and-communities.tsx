@@ -37,6 +37,12 @@ const PartnersAndCommunities = () => {
       logo: "/images/nithub.jpg",
       bgColor: "bg-gray-50",
     },
+
+    {
+      name: "Blueshift",
+      logo: "/images/blueshift.jpg",
+      bgColor: "bg-gray-50",
+    },
   ];
 
   const participatingUniversities = [
@@ -86,7 +92,7 @@ const PartnersAndCommunities = () => {
           </h1>
 
           {/*change col-start when adding a new community*/}
-          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>:nth-child(7)]:col-start-2 lg:[&>:nth-child(7)]:w-full lg:[&>:nth-child(7)]:max-w-none lg:[&>:nth-child(7)]:justify-self-center">
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>:nth-child(7)]:col-start-1 lg:[&>:nth-child(7)]:w-full lg:[&>:nth-child(7)]:max-w-none lg:[&>:nth-child(7)]:justify-self-center">
             {communities.map((item, index) => (
               <CommunityCard title={item.name} logo={item.logo} key={index} />
             ))}

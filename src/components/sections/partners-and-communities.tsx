@@ -43,6 +43,12 @@ const PartnersAndCommunities = () => {
       logo: "/images/blueshift.jpg",
       bgColor: "bg-gray-50",
     },
+
+    {
+      name: "Rektoff",
+      logo: "/images/rektoff.jpg",
+      bgColor: "bg-gray-50",
+    },
   ];
 
   const participatingUniversities = [

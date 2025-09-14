@@ -157,7 +157,7 @@ const Footer = () => {
               </a>
               {/* GitHub */}
               <a
-                href="https://github.com/Solana-Students-Africa/solana-students-quickstart"
+                href="https://github.com/Solana-Students-Africa"
                 className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/30"
                 aria-label="Follow us on GitHub"
               >

@@ -17,8 +17,8 @@ const Hero = () => {
               "radial-gradient(47.61% 408.42% at 47.72% 18.09%, #0C41D1 0%, #08277F 50%, rgba(6, 33, 107, 0) 85.83%)",
           }}
         >
-          <span className="block sm:hidden">September 4, 2025 | University of Lagos</span>
-          <span className="hidden sm:block">September 4, 2025 | University of Lagos</span>
+          <span className="block sm:hidden">October 4, 2025 | University of Lagos</span>
+          <span className="hidden sm:block">October 4, 2025 | University of Lagos</span>
         </div>
 
         <h1 className="font-poppins text-3xl leading-tight font-semibold sm:text-4xl sm:leading-tight md:text-6xl md:leading-none lg:text-8xl xl:text-[110px]">
@@ -44,7 +44,7 @@ const Hero = () => {
 
         <div className="flex w-full flex-col items-center gap-3 pt-2 sm:w-auto sm:flex-row sm:gap-4 md:gap-2.5 md:pt-4">
           <a
-            href="https://www.hackquest.io/hackathons/Solana-x-AI-Students-Hack"
+            href="https://luma.com/vq3r9q1p"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full sm:w-auto"

@@ -23,7 +23,7 @@ const Footer = () => {
             Tobiloba Adedeji
           </h1>
           <p className="w-full text-base font-medium sm:w-[90%] sm:text-lg md:w-[80%] md:text-xl lg:w-[60%]">
-            Lead Hackathon Organizer and Student Coordinator
+            Co-lead, Solana Students Africa.
           </p>
 
           {/* Social Media Icons */}

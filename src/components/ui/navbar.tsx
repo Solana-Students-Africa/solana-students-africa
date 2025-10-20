@@ -9,16 +9,12 @@ const Navbar = () => {
         href: "#home",
       },
       {
-        name: "About",
+        name: "About SSA",
         href: "#about",
       },
       {
-        name: "Tracks",
-        href: "#tracks",
-      },
-      {
-        name: "Timeline",
-        href: "#timeline",
+        name: "Summit",
+        href: "#summit",
       },
       {
         name: "Partners",
@@ -41,35 +37,62 @@ const Navbar = () => {
       setIsScrolled(scrollTop > 50);
 
       const navbarHeight = getNavbarOffset();
-      const sections = routes.map((route) => route.href.substring(1));
+
+      // Get all section elements
+      const homeElement = document.getElementById("home");
+      const aboutElement = document.getElementById("about");
+      const summitElement = document.getElementById("summit");
+      const partnersElement = document.getElementById("partners");
+      const contactElement = document.getElementById("contact");
 
       let currentSection = "home";
-      let maxVisibleArea = 0;
 
-      sections.forEach((sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const sectionTop = rect.top;
-          const sectionBottom = rect.bottom;
-          const viewportHeight = window.innerHeight;
+      // Special case: if we're at the very top, always show home
+      if (window.scrollY < 100) {
+        setActiveSection("home");
+        return;
+      }
 
-          const visibleTop = Math.max(sectionTop, navbarHeight);
-          const visibleBottom = Math.min(sectionBottom, viewportHeight);
-          const visibleArea = Math.max(0, visibleBottom - visibleTop);
-
-          // If this section has more visible area and is actually visible
-          if (visibleArea > maxVisibleArea && visibleArea > 50) {
-            maxVisibleArea = visibleArea;
-            currentSection = sectionId;
-          }
-
-          // Special case: if we're at the very top, always show home
-          if (window.scrollY < 100) {
-            currentSection = "home";
-          }
+      // Check each section's position
+      if (contactElement) {
+        const rect = contactElement.getBoundingClientRect();
+        if (rect.top < navbarHeight + 100) {
+          currentSection = "contact";
         }
-      });
+      }
+
+      if (partnersElement && currentSection !== "contact") {
+        const rect = partnersElement.getBoundingClientRect();
+        if (rect.top < navbarHeight + 100) {
+          currentSection = "partners";
+        }
+      }
+
+      if (summitElement && currentSection !== "contact" && currentSection !== "partners") {
+        const rect = summitElement.getBoundingClientRect();
+        if (rect.top < navbarHeight + 100) {
+          currentSection = "summit";
+        }
+      }
+
+      if (
+        aboutElement &&
+        currentSection !== "summit" &&
+        currentSection !== "partners" &&
+        currentSection !== "contact"
+      ) {
+        const rect = aboutElement.getBoundingClientRect();
+        if (rect.top < navbarHeight + 100) {
+          currentSection = "about";
+        }
+      }
+
+      if (homeElement && currentSection === "home") {
+        const rect = homeElement.getBoundingClientRect();
+        if (rect.bottom > navbarHeight) {
+          currentSection = "home";
+        }
+      }
 
       setActiveSection(currentSection);
     };

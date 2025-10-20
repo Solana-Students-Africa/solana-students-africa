@@ -2,9 +2,10 @@ import AnimationBase from "@/animations/classes/AnimationBase";
 import { customEasings } from "@/animations/constants/easings";
 import Hero from "@/components/sections/hero";
 import Info from "@/components/sections/info";
+import FocusSection from "@/components/sections/focus";
+import MissionSection from "@/components/sections/mission";
+import SummitSection from "@/components/sections/summit";
 import PartnersAndCommunities from "@/components/sections/partners-and-communities";
-import TimelineSection from "@/components/sections/timeline";
-import TracksSection from "@/components/sections/tracks";
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
 import { useEffect, useRef } from "react";
@@ -19,8 +20,9 @@ const Home = () => {
           ".navbar-section",
           ".hero-section",
           ".info-section",
-          ".tracks-section",
-          ".timeline-section",
+          ".focus-section",
+          ".mission-section",
+          ".summit-section",
           ".partners-section",
           ".footer-section",
         ],
@@ -36,9 +38,10 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Info />
-      <TracksSection />
+      <FocusSection />
+      <MissionSection />
       <div className="overflow-x-hidden">
-        <TimelineSection />
+        <SummitSection />
         <PartnersAndCommunities />
         <Footer />
       </div>

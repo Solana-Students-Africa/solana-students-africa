@@ -1,6 +1,23 @@
 import { Container } from "@/components/ui/container";
+import { useState, useRef } from "react";
 
 const SummitSection = () => {
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
+
+  const handleVideoClick = () => {
+    if (videoRef.current && videoRef.current.muted) {
+      videoRef.current.muted = false;
+      setIsMuted(false);
+    }
+  };
   return (
     <Container
       className="summit-section w-full bg-black px-6 pt-10 pb-20 md:pt-32"
@@ -128,14 +145,63 @@ const SummitSection = () => {
 
             <div className="w-full">
               <div className="relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-black">
-                <iframe
-                  src="https://player.vimeo.com/video/1128658125?badge=0&autopause=0&player_id=0&app_id=58479"
-                  className="absolute inset-0 h-full w-full"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  title="SSA Summit 2025 Highlights"
-                ></iframe>
+                {/* Add video autoplay with /videos/ */}
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  playsInline
+                  muted
+                  className="absolute inset-0 h-full w-full cursor-pointer object-cover"
+                  onClick={handleVideoClick}
+                >
+                  <source src="/videos/experience-summit-video.mp4" type="video/mp4" />
+                </video>
+
+                {/* Mute/Unmute Button */}
+                <button
+                  onClick={toggleMute}
+                  className="absolute right-4 bottom-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-black/70"
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                >
+                  {isMuted ? (
+                    // Muted icon
+                    <svg
+                      className="h-5 w-5 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                      />
+                    </svg>
+                  ) : (
+                    // Unmuted icon
+                    <svg
+                      className="h-5 w-5 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      />
+                    </svg>
+                  )}
+                </button>
               </div>
             </div>
 

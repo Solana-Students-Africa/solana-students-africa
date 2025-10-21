@@ -21,7 +21,7 @@ const Hero = () => {
           <span className="hidden sm:block">Solana Students Africa</span>
         </div>
 
-        <h1 className="font-poppins text-3xl leading-tight font-semibold sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight lg:text-7xl xl:text-8xl">
+        <h1 className="font-poppins text-4xl leading-tight font-semibold sm:text-5xl sm:leading-tight md:text-6xl md:leading-tight lg:text-8xl xl:text-9xl">
           <span className="block sm:hidden">Building Africa's Solana Students Layer</span>
           <span className="hidden sm:block">Building Africa's Solana Students Layer</span>
         </h1>

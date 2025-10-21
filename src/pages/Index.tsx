@@ -34,17 +34,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="font-gellix landing-page flex flex-col bg-black">
+    <div className="font-gellix landing-page flex flex-col overflow-x-hidden bg-black">
       <Navbar />
       <Hero />
       <Info />
       <FocusSection />
       <MissionSection />
-      <div className="overflow-x-hidden">
-        <SummitSection />
-        <PartnersAndCommunities />
-        <Footer />
-      </div>
+      <SummitSection />
+      <PartnersAndCommunities />
+      <Footer />
     </div>
   );
 };

@@ -1,46 +1,57 @@
-import Button from "../ui/button";
-import { Container } from "../ui/container";
-
 const Hero = () => {
   return (
-    <section
-      className="hero-section relative flex min-h-screen items-center justify-center bg-[url('/images/hero-background.png')] bg-cover bg-center bg-no-repeat pt-32 pb-20 md:pt-8 md:pb-8 lg:pt-20 lg:pb-0"
-      id="home"
-    >
-      <div className="absolute inset-0 bg-black/20 md:hidden" />
+    <section className="hero-section absolute inset-0 overflow-hidden bg-black" id="home">
+      {/* Yellow Star - Top left */}
+      <img
+        src="/images/star-yellow.svg"
+        alt=""
+        className="absolute top-[100px] left-[10px] h-[150px] w-[150px] opacity-50 md:top-[152px] md:left-[113px] md:h-[334px] md:w-[334px] md:opacity-100"
+      />
 
-      <Container className="relative z-10 w-full px-4 md:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 text-center md:gap-10 lg:gap-12">
-          {/* Badge */}
-          <div
-            className="rounded-lg px-3 py-2 text-xs font-medium shadow-2xl sm:px-4 sm:py-2.5 sm:text-sm md:text-base lg:text-lg"
-            style={{
-              background:
-                "radial-gradient(47.61% 408.42% at 47.72% 18.09%, #0C41D1 0%, #08277F 50%, rgba(6, 33, 107, 0) 85.83%)",
-            }}
-          >
-            <span className="block sm:hidden">Solana Students Africa</span>
-            <span className="hidden sm:block">Solana Students Africa</span>
-          </div>
+      {/* Green Africa Shape - Top right */}
+      <img
+        src="/images/africa-green.svg"
+        alt=""
+        className="absolute top-[80px] right-[-30px] h-[120px] w-[110px] opacity-50 md:top-[186px] md:right-[198px] md:h-[297px] md:w-[275px] md:opacity-100"
+      />
 
-          {/* Main heading - wider and less tall */}
-          <h1 className="font-poppins max-w-6xl text-4xl leading-[1.15] font-semibold sm:text-5xl sm:leading-[1.2] md:text-6xl md:leading-[1.2] lg:text-7xl lg:leading-[1.2] xl:text-8xl xl:leading-[1.15]">
-            <span className="block sm:hidden">Building Africa's Solana Students Layer</span>
-            <span className="hidden sm:block">Building Africa's Solana Students Layer</span>
-          </h1>
+      {/* Blue Shape - Bottom left */}
+      <img
+        src="/images/blue-shape.svg"
+        alt=""
+        className="absolute top-[650px] -left-[61px] hidden h-[229px] w-[268px] md:block"
+      />
 
-          {/* Description - if you have text, it will show wider */}
-          <p className="mx-auto max-w-3xl text-sm leading-6 font-medium sm:text-base sm:leading-7 md:text-lg md:leading-8 lg:text-xl lg:leading-9">
-            <span className="block sm:hidden"></span>
-            <span className="hidden sm:block"></span>
-          </p>
+      {/* Orange Trophy - Bottom right */}
+      <img
+        src="/images/trophy-orange.svg"
+        alt=""
+        className="absolute top-[671px] right-[-84px] hidden h-[250px] w-[269px] md:block"
+      />
 
-          {/* CTA buttons - horizontal layout prioritized */}
-          <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:gap-4 md:gap-5 lg:gap-6">
-            <a href="#about" className="block w-full sm:w-auto"></a>
-          </div>
-        </div>
-      </Container>
+      {/* Content Container */}
+      <div className="absolute top-[150px] left-[15px] flex w-[calc(100%-30px)] flex-col items-center gap-[30px] md:top-[281px] md:left-1/2 md:w-[952px] md:-translate-x-1/2 md:gap-[50px]">
+        {/* Headline */}
+        <h1 className="font-area w-full text-center text-[40px] leading-[48px] font-extrabold tracking-[-1.2px] text-white md:text-[80px] md:leading-[90px] md:tracking-[-2.4px]">
+          Students building Web3 for Africa on Solana
+        </h1>
+
+        {/* Subheadline */}
+        <p className="font-gellix w-full text-center text-[16px] leading-[28px] font-normal tracking-[0.32px] text-white md:w-[840px] md:text-[25px] md:leading-[40px] md:tracking-[0.5px]">
+          Empowering students across Africa to learn, build, and innovate with Web3 through hands-on
+          workshops, hackathons, and real-world projects on the Solana blockchain.
+        </p>
+
+        {/* CTA Button */}
+        <a
+          href="https://x.com/SolanaStudentAf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-gellix rounded-[50px] bg-[#ffb600] px-[20px] py-[15px] text-[16px] font-medium text-white transition-all hover:bg-[#e6a500] md:py-[20px] md:text-[30px]"
+        >
+          Join the community
+        </a>
+      </div>
     </section>
   );
 };

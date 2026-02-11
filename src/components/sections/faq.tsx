@@ -42,15 +42,30 @@ const FAQ = () => {
   const faqs = [
     {
       question: "What is Solana Students Africa (SSA)?",
-      answer: null,
+      answer: (
+        <div className="font-gellix text-[14px] leading-[1.8] font-medium text-[rgba(29,29,29,0.8)] md:text-[20px] md:leading-[2]">
+          Solana Students Africa (SSA) is a student-led initiative dedicated to advancing blockchain
+          education and innovation across Africa through the Solana ecosystem. We provide student
+          builders with the knowledge, tools, and opportunities to explore decentralized
+          technologies and build impactful solutions on Solana.
+        </div>
+      ),
     },
     {
       question: "Who can join SSA?",
-      answer: null,
+      answer: (
+        <div className="font-gellix text-[14px] leading-[1.8] font-medium text-[rgba(29,29,29,0.8)] md:text-[20px] md:leading-[2]">
+          Students who are interested and have the drive to build
+        </div>
+      ),
     },
     {
       question: "Do I need prior blockchain or coding experience?",
-      answer: null,
+      answer: (
+        <div className="font-gellix text-[14px] leading-[1.8] font-medium text-[rgba(29,29,29,0.8)] md:text-[20px] md:leading-[2]">
+          No experience is required to join
+        </div>
+      ),
     },
     {
       question: "How can I join SSA?",

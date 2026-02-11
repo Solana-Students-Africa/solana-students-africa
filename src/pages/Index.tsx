@@ -36,7 +36,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="font-gellix landing-page mx-auto flex w-full max-w-[1512px] flex-col bg-black">
+    <div className="font-gellix landing-page mx-auto flex w-full max-w-[1440px] flex-col bg-black">
       {/* Hero section with Navbar - Mobile: smaller height, Desktop: 806px */}
       <div className="relative h-[500px] w-full bg-black md:h-[806px]">
         <Navbar />

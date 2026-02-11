@@ -24,10 +24,10 @@ const EventPoster = () => (
     {/* Event Header - Top Left */}
     <div className="absolute top-[15px] left-[14px]">
       <p className="font-gellix w-[120px] text-[16px] leading-[18px] font-semibold tracking-[-0.48px] text-white md:w-[159px] md:text-[23.681px] md:leading-[23.681px] md:tracking-[-0.7104px]">
-        Solana Student Africa Summit 2025
+        Zero To Shipped
       </p>
       <p className="font-gellix mt-[20px] text-[16px] tracking-[-0.48px] text-[#ffc350] italic md:mt-[33px] md:text-[22.497px] md:tracking-[-0.6749px]">
-        Grandfinale
+        Ongoing
       </p>
     </div>
 
@@ -48,22 +48,22 @@ const EventPoster = () => (
 
     {/* Event Content - Bottom Left */}
     <div className="absolute bottom-[20px] left-[14px] flex w-[280px] flex-col gap-[12px] md:bottom-[30px] md:w-[418px] md:gap-[19px]">
-      <p className="font-gellix text-[11px] font-normal text-white md:text-[13.575px]">THEME:</p>
+      <p className="font-gellix text-[11px] font-normal text-white md:text-[13.575px]">FORMAT:</p>
       <p className="font-gellix text-[50px] leading-[52px] font-semibold tracking-[-1.5px] text-white md:text-[84.148px] md:leading-[87.966px] md:tracking-[-2.5244px]">
-        Solana x AI
+        X Spaces
       </p>
       {/* Tags */}
       <div className="flex flex-wrap items-center gap-[3px] p-[3px] md:p-[5px]">
         <span className="font-gellix text-[11px] font-semibold text-white uppercase md:text-[13.575px]">
-          hackathon
+          DISCUSSIONS
         </span>
         <span className="h-[4px] w-[4px] rounded-full bg-white md:h-[5px] md:w-[5px]"></span>
         <span className="font-gellix text-[11px] font-semibold text-white uppercase md:text-[13.575px]">
-          TALKS
+          LEARNING
         </span>
         <span className="h-[4px] w-[4px] rounded-full bg-white md:h-[5px] md:w-[5px]"></span>
         <span className="font-gellix text-[11px] font-semibold text-white uppercase md:text-[13.575px]">
-          NETWORKING
+          SHIPPING
         </span>
       </div>
     </div>
@@ -199,35 +199,35 @@ const Events = () => {
               <div className="flex flex-col gap-[10px] md:gap-[20px]">
                 <div className="inline-flex w-fit items-center justify-center rounded-[50px] border border-black px-[10px] py-[8px] md:py-[10px]">
                   <span className="font-gellix text-[14px] font-medium tracking-[0.7px] text-black capitalize md:text-[16px] md:tracking-[0.8px]">
-                    Venue
+                    Platform
                   </span>
                 </div>
                 <p className="font-gellix text-[14px] leading-[20px] font-semibold tracking-[0.42px] text-black uppercase md:text-[20px] md:leading-[24px] md:tracking-[0.6px]">
-                  faculty of social science lecture theater, university of lagos
+                  X SPACES (FORMERLY TWITTER)
                 </p>
               </div>
 
-              {/* Date */}
+              {/* Status */}
               <div className="flex flex-col gap-[10px] md:gap-[20px]">
                 <div className="inline-flex w-fit items-center justify-center rounded-[50px] border border-black px-[10px] py-[8px] md:py-[10px]">
                   <span className="font-gellix text-[14px] font-medium tracking-[0.7px] text-black capitalize md:text-[16px] md:tracking-[0.8px]">
-                    Date
+                    Status
                   </span>
                 </div>
                 <p className="font-gellix text-[14px] leading-[20px] font-semibold tracking-[0.42px] text-black uppercase md:text-[20px] md:leading-[24px] md:tracking-[0.6px]">
-                  SATURDAY 4TH OF OCTOBER, 2025
+                  ONGOING - CHECK X FOR SCHEDULE
                 </p>
               </div>
 
-              {/* Time */}
+              {/* Frequency */}
               <div className="flex flex-col gap-[10px] md:gap-[20px]">
                 <div className="inline-flex w-fit items-center justify-center rounded-[50px] border border-black px-[10px] py-[8px] md:py-[10px]">
                   <span className="font-gellix text-[14px] font-medium tracking-[0.7px] text-black capitalize md:text-[16px] md:tracking-[0.8px]">
-                    Time
+                    Frequency
                   </span>
                 </div>
                 <p className="font-gellix text-[14px] leading-[20px] font-semibold tracking-[0.42px] text-black uppercase md:text-[20px] md:leading-[24px] md:tracking-[0.6px]">
-                  10:00AM UTC
+                  REGULAR SESSIONS
                 </p>
               </div>
             </div>
@@ -235,43 +235,108 @@ const Events = () => {
 
           {/* Event Card 2 */}
           <div className="flex w-full flex-col gap-[20px] md:w-[1206px] md:flex-row md:gap-[18px]">
-            <EventPoster />
+            {/* Builder Program 2026 Poster */}
+            <div className="relative h-[220px] w-full overflow-clip rounded-[15px] bg-[#141414] md:h-[274px] md:w-[703px]">
+              {/* Background Ellipses */}
+              <div className="absolute -top-[100px] -left-[150px] h-[300px] w-[450px] md:-top-[157px] md:-left-[278px] md:h-[481px] md:w-[757px]">
+                <img
+                  src="/images/event-ellipse-orange.png"
+                  alt=""
+                  className="h-full w-full object-contain opacity-50"
+                />
+              </div>
+              <div className="absolute top-[50px] -left-[150px] h-[280px] w-[430px] md:top-[72px] md:-left-[286px] md:h-[457px] md:w-[720px]">
+                <img
+                  src="/images/event-ellipse-green.png"
+                  alt=""
+                  className="h-full w-full object-contain opacity-50"
+                />
+              </div>
+
+              {/* Event Header - Top Left */}
+              <div className="absolute top-[15px] left-[14px]">
+                <p className="font-gellix w-[180px] text-[14px] leading-[16px] font-semibold tracking-[-0.42px] text-white md:w-[200px] md:text-[18px] md:leading-[20px] md:tracking-[-0.54px]">
+                  Builder Program 2026
+                </p>
+                <p className="font-gellix mt-[8px] text-[14px] tracking-[-0.42px] text-[#ffc350] italic md:mt-[12px] md:text-[18px] md:tracking-[-0.54px]">
+                  Coming Soon
+                </p>
+              </div>
+
+              {/* Sponsor Logos - Top Right */}
+              <div className="absolute top-[11px] right-[14px] flex items-center gap-[5px] md:gap-[7px]">
+                <img
+                  src="/images/solana-logo-white.png"
+                  alt="Solana"
+                  className="h-[14px] w-auto md:h-[18px]"
+                />
+                <img
+                  src="/images/ssa-logo-small.png"
+                  alt="SSA"
+                  className="h-[30px] w-auto md:h-[40px]"
+                />
+              </div>
+
+              {/* Event Content - Bottom Left */}
+              <div className="absolute bottom-[20px] left-[14px] flex w-[280px] flex-col gap-[8px] md:bottom-[30px] md:w-[418px] md:gap-[12px]">
+                <p className="font-gellix text-[11px] font-normal text-white md:text-[13.575px]">
+                  FOCUS:
+                </p>
+                <p className="font-gellix text-[42px] leading-[44px] font-semibold tracking-[-1.26px] text-white md:text-[70px] md:leading-[73px] md:tracking-[-2.1px]">
+                  Build & Ship
+                </p>
+                {/* Tags */}
+                <div className="flex flex-wrap items-center gap-[3px] p-[3px] md:p-[5px]">
+                  <span className="font-gellix text-[11px] font-semibold text-white uppercase md:text-[13.575px]">
+                    MENTORSHIP
+                  </span>
+                  <span className="h-[4px] w-[4px] rounded-full bg-white md:h-[5px] md:w-[5px]"></span>
+                  <span className="font-gellix text-[11px] font-semibold text-white uppercase md:text-[13.575px]">
+                    PROJECTS
+                  </span>
+                  <span className="h-[4px] w-[4px] rounded-full bg-white md:h-[5px] md:w-[5px]"></span>
+                  <span className="font-gellix text-[11px] font-semibold text-white uppercase md:text-[13.575px]">
+                    GROWTH
+                  </span>
+                </div>
+              </div>
+            </div>
 
             {/* Event Details */}
             <div className="flex w-full flex-col gap-[15px] md:w-[485px] md:gap-[20px]">
-              {/* Venue */}
+              {/* Program Type */}
               <div className="flex flex-col gap-[10px] md:gap-[20px]">
                 <div className="inline-flex w-fit items-center justify-center rounded-[50px] border border-black px-[10px] py-[8px] md:py-[10px]">
                   <span className="font-gellix text-[14px] font-medium tracking-[0.7px] text-black capitalize md:text-[16px] md:tracking-[0.8px]">
-                    Venue
+                    Program Type
                   </span>
                 </div>
                 <p className="font-gellix text-[14px] leading-[20px] font-semibold tracking-[0.42px] text-black uppercase md:text-[20px] md:leading-[24px] md:tracking-[0.6px]">
-                  X (FORMERLY TWITTER)
+                  INTENSIVE BUILDER PROGRAM
                 </p>
               </div>
 
-              {/* Date */}
+              {/* Status */}
               <div className="flex flex-col gap-[10px] md:gap-[20px]">
                 <div className="inline-flex w-fit items-center justify-center rounded-[50px] border border-black px-[10px] py-[8px] md:py-[10px]">
                   <span className="font-gellix text-[14px] font-medium tracking-[0.7px] text-black capitalize md:text-[16px] md:tracking-[0.8px]">
-                    Date
+                    Status
                   </span>
                 </div>
                 <p className="font-gellix text-[14px] leading-[20px] font-semibold tracking-[0.42px] text-black uppercase md:text-[20px] md:leading-[24px] md:tracking-[0.6px]">
-                  SATURDAY 4TH OF OCTOBER, 2025
+                  COMING SOON - STAY TUNED
                 </p>
               </div>
 
-              {/* Time */}
+              {/* Duration */}
               <div className="flex flex-col gap-[10px] md:gap-[20px]">
                 <div className="inline-flex w-fit items-center justify-center rounded-[50px] border border-black px-[10px] py-[8px] md:py-[10px]">
                   <span className="font-gellix text-[14px] font-medium tracking-[0.7px] text-black capitalize md:text-[16px] md:tracking-[0.8px]">
-                    Time
+                    Duration
                   </span>
                 </div>
                 <p className="font-gellix text-[14px] leading-[20px] font-semibold tracking-[0.42px] text-black uppercase md:text-[20px] md:leading-[24px] md:tracking-[0.6px]">
-                  10:00AM UTC
+                  MULTI-WEEK PROGRAM
                 </p>
               </div>
             </div>

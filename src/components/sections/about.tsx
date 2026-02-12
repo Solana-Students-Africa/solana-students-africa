@@ -1,105 +1,75 @@
-import { Container } from "@/components/ui/container";
-
-const AboutSection = () => {
-  const focusAreas = [
-    {
-      id: 1,
-      title: "Education & Training",
-      description: "Equipping students with practical blockchain development skills",
-      icon: "📚",
-      gradient: "from-purple-600 to-blue-500",
-    },
-    {
-      id: 2,
-      title: "Hackathons & Summits",
-      description: "Creating platforms that inspire innovation and collaboration",
-      icon: "🏆",
-      gradient: "from-orange-500 to-pink-500",
-    },
-    {
-      id: 3,
-      title: "Community Building",
-      description: "Nurturing vibrant, student-led communities across campuses",
-      icon: "🤝",
-      gradient: "from-green-500 to-teal-500",
-    },
-    {
-      id: 4,
-      title: "Ecosystem Growth",
-      description: "Connecting African talents to global opportunities",
-      icon: "🌍",
-      gradient: "from-blue-600 to-cyan-500",
-    },
-  ];
-
+const About = () => {
   return (
-    <Container className="info-section relative py-16 md:py-24" as="section" id="about">
-      <div className="flex w-full flex-col gap-12 lg:flex-row lg:gap-16 xl:gap-20">
-        {/* LEFT COLUMN - About Text & Mission */}
-        <div className="flex flex-col gap-8 lg:w-[55%] lg:gap-12">
-          {/* About SSA Intro */}
-          <div className="flex flex-col gap-4">
-            <h2 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-              About Solana Students Africa
-            </h2>
-            <p className="text-base leading-relaxed text-white/80 md:text-lg lg:text-xl">
-              Solana Students Africa (SSA) is a student-led initiative dedicated to advancing
-              blockchain education and innovation across Africa through the Solana ecosystem. We
-              provide student builders with the knowledge, tools, and opportunities to explore
-              decentralized technologies and build impactful solutions on Solana.
-            </p>
-          </div>
-
-          {/* Our Mission Card */}
-          <div className="relative">
-            <div className="rounded-3xl bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-sm md:p-10">
-              <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">Our Mission</h3>
-              <p className="text-base leading-relaxed text-white/90 md:text-lg">
-                To cultivate a thriving network of African student builders who are shaping the
-                future of the Solana ecosystem through innovation, education, and collaboration.
-              </p>
-            </div>
-
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 -z-10 h-32 w-32 rounded-full bg-purple-500/20 blur-3xl md:h-40 md:w-40"></div>
-            <div className="absolute -bottom-4 -left-4 -z-10 h-32 w-32 rounded-full bg-blue-500/20 blur-3xl md:h-40 md:w-40"></div>
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN - Focus Areas Grid */}
-        <div className="flex flex-col gap-6 lg:w-[45%]">
-          <h3 className="text-3xl font-bold text-white md:text-4xl lg:text-left">Our Focus</h3>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5">
-            {focusAreas.map((area) => (
-              <div
-                key={area.id}
-                className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${area.gradient} p-6 transition-all duration-300 hover:scale-105 md:p-7`}
-              >
-                {/* Icon/Number */}
-                <div className="mb-3 text-4xl md:text-5xl">{area.icon}</div>
-
-                {/* Title */}
-                <h4 className="mb-2 text-lg font-bold text-white md:text-xl">{area.title}</h4>
-
-                {/* Description */}
-                <p className="text-sm leading-relaxed text-white/90 md:text-base">
-                  {area.description}
-                </p>
-
-                {/* Hover effect */}
-                <div className="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              </div>
-            ))}
-          </div>
+    <section className="about-section relative w-full bg-[#f5f5f5] px-[15px] py-[60px] md:h-[1320px] md:px-0 md:py-0">
+      {/* About Us pill button - centered */}
+      <div className="flex justify-center md:absolute md:top-[100px] md:left-1/2 md:-translate-x-1/2">
+        <div className="flex items-center justify-center rounded-[50px] border-2 border-solid border-black px-[15px] py-[12px] md:px-[20px] md:py-[20px]">
+          <p className="font-gellix text-[16px] leading-[14px] font-medium text-black md:text-[20px]">
+            About Us
+          </p>
         </div>
       </div>
 
-      {/* Background decorations */}
-      <div className="pointer-events-none absolute top-1/4 left-0 -z-10 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl md:h-96 md:w-96"></div>
-      <div className="pointer-events-none absolute right-0 bottom-1/4 -z-10 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl md:h-96 md:w-96"></div>
-    </Container>
+      {/* Content container - Mobile: stacked, Desktop: side by side */}
+      <div className="mt-[40px] flex flex-col gap-[40px] md:absolute md:top-[274px] md:left-[50px] md:mt-0 md:w-[1412px] md:flex-row md:items-start md:justify-between md:gap-0">
+        {/* Left column - Text content */}
+        <div className="flex w-full flex-col gap-[40px] md:w-[696px] md:gap-[60px]">
+          {/* Who We Are */}
+          <div className="flex w-full flex-col items-start gap-[20px] md:gap-[30px]">
+            <p className="font-area text-[28px] leading-[31px] font-extrabold tracking-[-0.84px] text-[#0b9444] md:text-[40px] md:tracking-[-1.2px]">
+              Who We Are
+            </p>
+            <div className="font-gellix w-full text-[16px] leading-[32px] font-normal tracking-[0.32px] text-[#0b0b0b] md:w-[693px] md:text-[20px] md:leading-[40px] md:tracking-[0.4px]">
+              <p className="mb-0">
+                Solana Students Africa (SSA) is a pan-African student community empowering the next
+                generation of builders, creators, and innovators to explore the world of Web3 using
+                the Solana blockchain.
+              </p>
+              <p className="mb-0">&nbsp;</p>
+              <p>
+                SSA connects students from universities across the continent through hackathons,
+                workshops, mentorship programs, and campus chapters all focused on helping them
+                learn by building.
+              </p>
+            </div>
+          </div>
+
+          {/* Our Mission */}
+          <div className="flex w-full flex-col items-start gap-[20px] md:gap-[30px]">
+            <p className="font-area text-[28px] leading-[31px] font-extrabold tracking-[-0.84px] text-[#0b9444] md:text-[40px] md:tracking-[-1.2px]">
+              Our Mission
+            </p>
+            <p className="font-gellix w-full text-[16px] leading-[32px] font-normal tracking-[0.32px] text-[#0b0b0b] md:w-[693px] md:text-[20px] md:leading-[40px] md:tracking-[0.4px]">
+              To empower African students to learn, build, and innovate on the Solana blockchain by
+              providing access to education, mentorship, and opportunities that turn ideas into
+              real-world impact.
+            </p>
+          </div>
+
+          {/* Our Vision */}
+          <div className="flex w-full flex-col items-start gap-[20px] md:gap-[30px]">
+            <p className="font-area text-[28px] leading-[31px] font-extrabold tracking-[-0.84px] text-[#0b9444] md:text-[40px] md:tracking-[-1.2px]">
+              Our Vision
+            </p>
+            <p className="font-gellix w-full text-[16px] leading-[32px] font-normal tracking-[0.32px] text-[#0b0b0b] md:w-[689px] md:text-[20px] md:leading-[40px] md:tracking-[0.4px]">
+              To build a thriving network of African student builders shaping the future of the
+              decentralized web, driving economic inclusion, and positioning Africa as a leading
+              force in the global Web3 ecosystem.
+            </p>
+          </div>
+        </div>
+
+        {/* Right column - Image placeholder */}
+        <div className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-[30px] bg-[#d9d9d9] md:h-[833px] md:w-[696px] md:rounded-[50px]">
+          <img
+            src="/images/community-4.jpg"
+            alt="Solana Students Africa Community"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default AboutSection;
+export default About;

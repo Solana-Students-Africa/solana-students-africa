@@ -1,280 +1,168 @@
-import { useEffect, useMemo, useState } from "react";
-import { Container } from "./container";
+import { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const routes = useMemo(() => {
-    return [
-      {
-        name: "Home",
-        href: "#home",
-      },
-      {
-        name: "About SSA",
-        href: "#about",
-      },
-      {
-        name: "Summit",
-        href: "#summit",
-      },
-      {
-        name: "Partners",
-        href: "#partners",
-      },
-      {
-        name: "Contact",
-        href: "#contact",
-      },
-    ];
-  }, []);
-
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const location = useLocation();
+  const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const routes = [
+    { name: "Events", href: "/events" },
+    { name: "Community", href: "/community" },
+    { name: "Partners", href: "/partners" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  const aboutDropdownItems = [
+    { name: "Meet the team", href: "/team" },
+    { name: "About SSA", href: "/about" },
+  ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
-
-      const navbarHeight = getNavbarOffset();
-
-      // Get all section elements
-      const homeElement = document.getElementById("home");
-      const aboutElement = document.getElementById("about");
-      const summitElement = document.getElementById("summit");
-      const partnersElement = document.getElementById("partners");
-      const contactElement = document.getElementById("contact");
-
-      let currentSection = "home";
-
-      // Special case: if we're at the very top, always show home
-      if (window.scrollY < 100) {
-        setActiveSection("home");
-        return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsAboutDropdownOpen(false);
       }
-
-      // Check each section's position
-      if (contactElement) {
-        const rect = contactElement.getBoundingClientRect();
-        if (rect.top < navbarHeight + 100) {
-          currentSection = "contact";
-        }
-      }
-
-      if (partnersElement && currentSection !== "contact") {
-        const rect = partnersElement.getBoundingClientRect();
-        if (rect.top < navbarHeight + 100) {
-          currentSection = "partners";
-        }
-      }
-
-      if (summitElement && currentSection !== "contact" && currentSection !== "partners") {
-        const rect = summitElement.getBoundingClientRect();
-        if (rect.top < navbarHeight + 100) {
-          currentSection = "summit";
-        }
-      }
-
-      if (
-        aboutElement &&
-        currentSection !== "summit" &&
-        currentSection !== "partners" &&
-        currentSection !== "contact"
-      ) {
-        const rect = aboutElement.getBoundingClientRect();
-        if (rect.top < navbarHeight + 100) {
-          currentSection = "about";
-        }
-      }
-
-      if (homeElement && currentSection === "home") {
-        const rect = homeElement.getBoundingClientRect();
-        if (rect.bottom > navbarHeight) {
-          currentSection = "home";
-        }
-      }
-
-      setActiveSection(currentSection);
     };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [routes]);
-
-  const isActive = (href: string) => {
-    return activeSection === href.substring(1);
-  };
-
-  const getNavbarOffset = () => {
-    const width = window.innerWidth;
-    if (width >= 1280) return 140;
-    if (width >= 1024) return 120;
-    if (width >= 768) return 100;
-    if (width >= 640) return 80;
-    return 70;
-  };
-
-  const handleSmoothScroll = (href: string) => {
-    const targetId = href.substring(1);
-    const element = document.getElementById(targetId);
-
-    if (element) {
-      setActiveSection(targetId);
-
-      const navbarHeight = getNavbarOffset();
-      const elementPosition = element.offsetTop - navbarHeight;
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const handleMobileMenuClick = (href: string) => {
+  // Close mobile menu on route change
+  useEffect(() => {
     setIsMobileMenuOpen(false);
-    setTimeout(() => handleSmoothScroll(href), 100);
-  };
+  }, [location.pathname]);
 
-  const handleDesktopClick = (e: React.MouseEvent, href: string) => {
-    e.preventDefault();
-    handleSmoothScroll(href);
-  };
+  const isActive = (href: string) => location.pathname === href;
 
   return (
     <>
-      <div
-        className={`navbar-section fixed top-0 right-0 left-0 z-50 flex w-full justify-center transition-all duration-300 ${
-          isScrolled ? "bg-black/70 shadow-2xl backdrop-blur-md" : "bg-transparent"
-        }`}
-        style={{ padding: isScrolled ? "5px 0" : "10px 0 0 0" }}
-      >
-        <Container as="nav" className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img
-              src="/images/logo.png"
-              alt="Solana Students Africa Logo"
-              className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28"
-            />
-            <div className="text-lg font-medium text-white md:text-xl lg:text-2xl">
-              Solana Students Africa
-            </div>
+      {/* Navbar - Responsive: mobile left-[15px], desktop left-[50px] */}
+      <nav className="navbar-section absolute top-[30px] left-[15px] z-50 flex w-[calc(100%-30px)] items-center justify-between md:top-[50px] md:left-[50px] md:w-[calc(100%-100px)]">
+        {/* Brand - Mobile: text-[20px], Desktop: text-[30px] */}
+        <Link to="/" className="font-gellix text-[20px] font-medium text-white md:text-[30px]">
+          Solana Students Africa
+        </Link>
+
+        {/* Mobile Hamburger Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="flex h-[21px] w-[31.5px] flex-col items-center justify-center gap-[5px] md:hidden"
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`h-[2px] w-full bg-white transition-transform duration-300 ${isMobileMenuOpen ? "translate-y-[7px] rotate-45" : ""}`}
+          />
+          <span
+            className={`h-[2px] w-full bg-white transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`h-[2px] w-full bg-white transition-transform duration-300 ${isMobileMenuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
+          />
+        </button>
+
+        {/* Desktop Navigation Links - Hidden on mobile */}
+        <div className="hidden items-center gap-[48px] md:flex">
+          {/* About Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
+              className="font-gellix flex items-center gap-2 text-[20px] font-medium text-white transition-colors hover:text-white/80"
+            >
+              About
+              <svg
+                width="13"
+                height="8"
+                viewBox="0 0 13 8"
+                fill="none"
+                className={`transition-transform ${isAboutDropdownOpen ? "rotate-180" : ""}`}
+              >
+                <path
+                  d="M1 1L6.5 6.5L12 1"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown */}
+            {isAboutDropdownOpen && (
+              <div className="absolute top-full left-0 mt-[37px] flex h-[93px] w-[199px] flex-col overflow-hidden rounded-[15px] bg-white">
+                {aboutDropdownItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsAboutDropdownOpen(false)}
+                    className="font-gellix flex-1 px-[15px] py-[10px] text-[20px] font-medium text-black transition-colors hover:bg-gray-100"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden items-center space-x-4 md:flex md:space-x-6 lg:space-x-12">
-            {routes.map((route, index) => (
-              <a
+          {/* Other Nav Links */}
+          {routes.map((route) => (
+            <Link
+              key={route.name}
+              to={route.href}
+              className={`font-gellix text-[20px] font-medium transition-colors ${
+                isActive(route.href) ? "text-white" : "text-white hover:text-white/80"
+              }`}
+            >
+              {route.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-black/95 md:hidden">
+          <div className="flex h-full flex-col items-center justify-center gap-[40px]">
+            {/* About Section with nested items */}
+            <div className="flex flex-col items-center gap-[20px]">
+              <span className="font-gellix text-[24px] font-medium text-[#0b9444]">About</span>
+              {aboutDropdownItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="font-gellix text-[20px] font-normal text-white/80 transition-colors hover:text-white"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Other Nav Links */}
+            {routes.map((route) => (
+              <Link
                 key={route.name}
-                href={route.href}
-                onClick={(e) => handleDesktopClick(e, route.href)}
-                className={`group relative text-sm transition-colors md:text-base lg:text-lg ${
-                  isActive(route.href) ? "text-white" : "text-white/90 hover:text-white"
+                to={route.href}
+                className={`font-gellix text-[24px] font-medium transition-colors ${
+                  isActive(route.href) ? "text-[#0b9444]" : "text-white hover:text-[#0b9444]"
                 }`}
               >
                 {route.name}
-
-                <span
-                  className={`absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-300 ${
-                    isActive(route.href) ? "w-full" : "w-0"
-                  }`}
-                />
-
-                <span
-                  className={`absolute bottom-0 left-0 h-0.5 bg-white/80 transition-all duration-300 ease-out ${
-                    isActive(route.href) ? "w-0" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </a>
+              </Link>
             ))}
-          </div>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            className="flex h-8 w-8 flex-col items-center justify-center space-y-1.5 focus:outline-none md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                isMobileMenuOpen ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                isMobileMenuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                isMobileMenuOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </button>
-        </Container>
-      </div>
-
-      <div
-        className={`fixed inset-0 z-40 bg-black/90 backdrop-blur-md transition-all duration-300 md:hidden ${
-          isMobileMenuOpen ? "visible opacity-100" : "invisible opacity-0"
-        }`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      />
-
-      {/* Mobile Menu */}
-      <div
-        className={`fixed top-0 right-0 z-50 h-full w-80 transform bg-black/95 backdrop-blur-lg transition-transform duration-300 ease-in-out md:hidden ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex h-full flex-col">
-          <div className="flex justify-end p-6">
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex h-8 w-8 items-center justify-center text-white/80 transition-colors hover:text-white"
-              aria-label="Close menu"
+            {/* Join CTA */}
+            <a
+              href="https://x.com/SolanaStudentAf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-gellix mt-[20px] rounded-[50px] bg-[#0b9444] px-[30px] py-[15px] text-[18px] font-medium text-white"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
-
-          <nav className="flex-1 px-6">
-            <div className="space-y-6">
-              {routes.map((route, index) => (
-                <a
-                  key={route.name}
-                  href={route.href}
-                  onClick={() => handleMobileMenuClick(route.href)}
-                  className={`block transform text-xl font-medium transition-all duration-300 hover:translate-x-2 ${
-                    isActive(route.href)
-                      ? "border-l-2 border-white pl-4 text-white"
-                      : "pl-4 text-white/80 hover:text-white"
-                  }`}
-                >
-                  {route.name}
-                </a>
-              ))}
-            </div>
-          </nav>
-
-          <div className="border-t border-white/10 p-6">
-            <p className="text-sm text-white/60">Solana Students Africa</p>
+              Join the community
+            </a>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

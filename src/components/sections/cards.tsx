@@ -1,6 +1,6 @@
 const Cards = () => {
   return (
-    <section className="cards-section flex w-full flex-col items-center gap-[20px] bg-black px-[15px] md:w-[1472px] md:flex-row md:justify-between md:gap-0 md:px-0">
+    <section className="cards-section flex w-full flex-col items-center gap-[20px] bg-black px-[15px] md:w-[1472px] md:flex-row md:justify-between md:gap-[16px] md:px-0">
       {/* Learn Card - Green */}
       <div className="relative h-[390px] w-full shrink-0 overflow-hidden rounded-[20px] bg-[#00652a] md:h-[510px] md:w-[477px]">
         {/* Star decoration - rotated -34deg */}

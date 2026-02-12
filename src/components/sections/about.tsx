@@ -60,7 +60,13 @@ const About = () => {
         </div>
 
         {/* Right column - Image placeholder */}
-        <div className="h-[300px] w-full shrink-0 rounded-[30px] bg-[#d9d9d9] md:h-[833px] md:w-[696px] md:rounded-[50px]" />
+        <div className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-[30px] bg-[#d9d9d9] md:h-[833px] md:w-[696px] md:rounded-[50px]">
+          <img
+            src="/images/community-4.jpg"
+            alt="Solana Students Africa Community"
+            className="h-full w-full object-cover"
+          />
+        </div>
       </div>
     </section>
   );

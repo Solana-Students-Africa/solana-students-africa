@@ -10,57 +10,33 @@ export interface Startup {
 
 export const STARTUPS: Startup[] = [
   {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
+    name: "studIQ",
+    description: "",
+    category: "EDTECH",
+  },
+  {
+    name: "Sling",
+    description: "",
     category: "FINTECH",
   },
   {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
+    name: "AfricanResearchBase",
+    description: "",
+    category: "RESEARCH",
   },
   {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
+    name: "Konnect",
+    description: "",
+    category: "SOCIAL",
   },
   {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
+    name: "token analysis",
+    description: "",
+    category: "ANALYTICS",
   },
   {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
-  },
-  {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
-  },
-  {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
-  },
-  {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
-  },
-  {
-    name: "STUDIQ",
-    description:
-      "Follow us on all major platforms to get firsthand updates, and exciting opportunities.",
-    category: "FINTECH",
+    name: "AfroLearn",
+    description: "",
+    category: "EDTECH",
   },
 ];

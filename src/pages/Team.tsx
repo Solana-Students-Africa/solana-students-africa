@@ -4,22 +4,13 @@ import Footer from "@/components/sections/footer";
 // Team member data based on Figma design
 const teamMembers = [
   // Row 1
-  { name: "Tobiloba", role: "CO-FOUNDER", twitter: "#", linkedin: "#" },
+  { name: "Tobiloba", role: "CO-FOUNDER", twitter: "#", linkedin: "#", image: "/tobi.jpeg" },
   { name: "Opeyemi", role: "CO-FOUNDER", twitter: "#", linkedin: "#" },
   { name: "Oreoluwa", role: "DESIGN", twitter: "#", linkedin: "#" },
   // Row 2
-  {
-    name: "Confidence",
-    role: "COMMUNITY MANAGER",
-    twitter: "#",
-    linkedin: "#",
-  },
-  { name: "Teledua", role: "DESIGN", twitter: "#", linkedin: "#" },
-  { name: "Habeeb", role: "SOCIALS MANAGER", twitter: "#", linkedin: "#" },
-  // Row 3
-  { name: "Lanre", role: "ENGINEER", twitter: "#", linkedin: "#" },
-  { name: "ClassyDev", role: "ENGINEER", twitter: "#", linkedin: "#" },
+  { name: "Lanre", role: "ENGINEER", twitter: "#", linkedin: "#", image: "/lanre.jpg" },
   { name: "Industry Exp", role: "DATA ANALYST", twitter: "#", linkedin: "#" },
+  { name: "Teledua", role: "DESIGN", twitter: "#", linkedin: "#", image: "/teledua.jpeg" },
 ];
 
 // Team member card component - responsive
@@ -28,15 +19,19 @@ const TeamMemberCard = ({
   role,
   twitter,
   linkedin,
+  image,
 }: {
   name: string;
   role: string;
   twitter: string;
   linkedin: string;
+  image?: string;
 }) => (
   <div className="flex h-[350px] w-full flex-col items-center justify-between md:h-[543px] md:w-[460px]">
     {/* Photo placeholder with social icons */}
     <div className="relative h-[300px] w-full overflow-hidden rounded-[15px] bg-[#a7a7a7] md:h-[494px] md:rounded-[20px]">
+      {/* Team member photo */}
+      {image && <img src={image} alt={name} className="h-full w-full object-cover" />}
       {/* Social icons - top right corner */}
       <div className="absolute top-[15px] right-[15px] flex items-end gap-[8px] md:top-[25px] md:right-[25px] md:gap-[12px]">
         <a

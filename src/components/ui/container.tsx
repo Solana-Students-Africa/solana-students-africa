@@ -15,7 +15,7 @@ export function Container({
   ...props
 }: ContainerProps) {
   return (
-    <Component className={cn("mx-auto w-[90%] max-w-screen-xl md:w-[95%]", className)} {...props}>
+    <Component className={cn("max-w-screen- mx-auto w-[90%] md:w-[95%]", className)} {...props}>
       {children}
     </Component>
   );

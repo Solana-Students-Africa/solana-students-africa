@@ -1,180 +1,234 @@
-import { Container } from "../ui/container";
+import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { type CSSProperties, useLayoutEffect, useRef } from "react";
 
-const PartnersAndCommunities = () => {
-  const communities = [
-    {
-      name: "SuperteamNG",
-      logo: "/images/superteam.jpg",
-      bgColor: "bg-orange-50",
-    },
-    {
-      name: "Web3 Afrika",
-      logo: "/images/image-42.png",
-      bgColor: "bg-orange-50",
-    },
-    {
-      name: "WomeninDefi",
-      logo: "/images/women-defi.webp",
-      bgColor: "bg-purple-50",
-    },
-    {
-      name: "Web3Unilag",
-      logo: "/images/web3-unilag.jpg",
-      bgColor: "bg-blue-50",
-    },
-    {
-      name: "GDSC",
-      logo: "/images/image-41.png",
-      bgColor: "bg-blue-50",
-    },
-    {
-      name: "Github Campus Experts",
-      logo: "/images/gitcamp.png",
-      bgColor: "bg-gray-50",
-    },
-    {
-      name: "Nithub",
-      logo: "/images/nithub.jpg",
-      bgColor: "bg-gray-50",
-    },
+gsap.registerPlugin(ScrollTrigger);
 
-    {
-      name: "Blueshift",
-      logo: "/images/blueshift.jpg",
-      bgColor: "bg-gray-50",
-    },
+type Corner = "tl" | "tr" | "bl" | "br";
 
-    {
-      name: "Rektoff",
-      logo: "/images/rektoff.jpg",
-      bgColor: "bg-gray-50",
-    },
-  ];
+type Partner = {
+  name: string;
+  logo: string;
+  /** Logos with their own transparent background render without the white tile. */
+  bare?: boolean;
+  /** Position on the desktop board, as percentages of its width/height. */
+  x: number;
+  y: number;
+  /** Anchor horizontally from the right edge instead of the left. */
+  fromRight?: boolean;
+  label: "top" | "bottom";
+  marker: Corner;
+};
 
-  const participatingUniversities = [
-    {
-      name: "University of Lagos",
-      logo: "/images/unilag-logo.jpeg",
-      bgColor: "bg-green-50",
-    },
-    {
-      name: "Lagos State University",
-      logo: "/images/lasu-logo.jpeg",
-      bgColor: "bg-blue-50",
-    },
-    {
-      name: "University of Ilorin",
-      logo: "/images/ilorin-logo.jpeg",
-      bgColor: "bg-red-50",
-    },
-    {
-      name: "Caleb University",
-      logo: "/images/caleb-logo.png",
-      bgColor: "bg-indigo-50",
-    },
-    {
-      name: "Babcock University",
-      logo: "/images/babcock-logo.png",
-      bgColor: "bg-yellow-50",
-    },
-    {
-      name: "And More...",
-      logo: "🎓",
-      bgColor: "bg-gray-50",
-    },
-  ];
+const partners: Partner[] = [
+  {
+    name: "GDSC",
+    logo: "/images/image-41.png",
+    bare: true,
+    x: 14.8,
+    y: 13.7,
+    label: "top",
+    marker: "tr",
+  },
+  {
+    name: "Github Campus Experts",
+    logo: "/images/gitcamp.png",
+    x: 3.1,
+    y: 0,
+    fromRight: true,
+    label: "top",
+    marker: "tr",
+  },
+  {
+    name: "Blueshift",
+    logo: "/images/blueshift.jpg",
+    x: 38.3,
+    y: 22.8,
+    label: "bottom",
+    marker: "br",
+  },
+  { name: "Rektoff", logo: "/images/rektoff.jpg", x: 71.5, y: 19.3, label: "top", marker: "tl" },
+  {
+    name: "Web3Unilag",
+    logo: "/images/web3-unilag.jpg",
+    x: 1.6,
+    y: 56,
+    label: "top",
+    marker: "tl",
+  },
+  { name: "Nithub", logo: "/images/nithub.jpg", x: 26.7, y: 67.4, label: "bottom", marker: "bl" },
+  {
+    name: "WomeninDefi",
+    logo: "/images/women-defi.webp",
+    x: 51.8,
+    y: 65.4,
+    label: "bottom",
+    marker: "bl",
+  },
+  {
+    name: "Web3 Afrika",
+    logo: "/images/image-42.png",
+    bare: true,
+    x: 73.6,
+    y: 62.2,
+    label: "bottom",
+    marker: "bl",
+  },
+  {
+    name: "SuperteamNG",
+    logo: "/images/superteam.jpg",
+    x: 3.1,
+    y: 67.5,
+    fromRight: true,
+    label: "bottom",
+    marker: "br",
+  },
+];
+
+const markerPosition: Record<Corner, string> = {
+  tl: "-left-6 top-0",
+  tr: "-right-6 top-0",
+  bl: "-left-6 bottom-0",
+  br: "-right-6 bottom-0",
+};
+
+type PartnerItemProps = { partner: Partner; className?: string; style?: CSSProperties };
+
+const PartnerItem = ({ partner, className, style }: PartnerItemProps) => {
+  const label = (
+    <span className="text-ssa-ink text-sm font-semibold whitespace-nowrap sm:text-base">
+      {partner.name}
+    </span>
+  );
 
   return (
-    <Container
-      className="partners-section relative flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-20"
-      as="section"
+    <div
+      style={style}
+      className={cn(
+        "group relative flex flex-col gap-1.5",
+        partner.fromRight ? "items-end" : "items-start",
+        className
+      )}
+    >
+      <span
+        aria-hidden
+        className={cn(
+          "bg-ssa-purple absolute h-6 w-6 transition-transform duration-300 group-hover:rotate-45",
+          markerPosition[partner.marker]
+        )}
+      />
+      {partner.label === "top" && label}
+      <div
+        className={cn(
+          "flex h-28 w-28 items-center justify-center overflow-hidden transition duration-300 group-hover:-translate-y-1.5 xl:h-[clamp(6rem,min(10vw,17vh),10.5rem)] xl:w-[clamp(6rem,min(10vw,17vh),10.5rem)]",
+          partner.bare ? "" : "bg-white shadow-sm group-hover:shadow-lg"
+        )}
+      >
+        <img
+          src={partner.logo}
+          alt={`${partner.name} logo`}
+          loading="lazy"
+          className={cn(
+            "max-h-full max-w-full",
+            partner.bare ? "w-full object-contain" : "h-full w-full object-contain"
+          )}
+        />
+      </div>
+      {partner.label === "bottom" && label}
+    </div>
+  );
+};
+
+const PartnersAndCommunities = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const boardRef = useRef<HTMLDivElement>(null);
+
+  // Pulled up over Info's last screen and hidden until its pin ends: no extra scroll.
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const mm = gsap.matchMedia();
+    const conditions = {
+      board: "(min-width: 1280px)",
+      grid: "(max-width: 1279.98px)",
+      phone: "(max-width: 767.98px)",
+    };
+    mm.add(conditions, (ctx) => {
+      const { board, phone } = ctx.conditions ?? {};
+      // Phones skip Info's pin, so there is nothing to overlap there.
+      if (!phone) {
+        gsap.set(section, { autoAlpha: 0 });
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top top",
+          end: "max",
+          onToggle: (self) => gsap.set(section, { autoAlpha: self.isActive ? 1 : 0 }),
+        });
+      }
+
+      gsap
+        .timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: section,
+            start: phone ? "top 80%" : "top top",
+            scrub: 0.6,
+            // The board fits one screen on desktop, so hold it there before Campus.
+            ...(board ? { pin: true, pinSpacing: true, end: "+=90%" } : { end: "+=20%" }),
+          },
+        })
+        .fromTo(boardRef.current, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.2 })
+        .to({}, { duration: board ? 0.7 : 0 });
+    });
+    return () => mm.revert();
+  }, []);
+
+  return (
+    // Opaque cream so Info doesn't show through; the paper continues Info's grid.
+    <section
+      ref={sectionRef}
+      className="partners-section bg-ssa-cream bg-grid-paper relative z-10 py-16 md:-mt-[100vh] md:py-24 xl:flex xl:h-screen xl:items-center xl:pt-24 xl:pb-6"
       id="partners"
     >
-      <div className="z-10 flex w-full max-w-6xl flex-col justify-between gap-12 sm:gap-16 md:gap-20">
-        <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-14">
-          <h1 className="font-poppins flex max-w-4xl flex-col items-center text-center text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
-            <h1>Partners &</h1>
-            <h1>Communities</h1>
-          </h1>
+      <div
+        ref={boardRef}
+        className="relative px-4 py-10 xl:mx-auto xl:aspect-[1216/622] xl:w-[min(100%,calc((100vh_-_7.5rem)*1216/622))] xl:p-0"
+      >
+        <h2 className="mb-10 text-3xl leading-[0.95] font-extrabold xl:absolute xl:top-[3%] xl:left-[3%] xl:mb-0 xl:text-[2.2rem]">
+          Partners &amp;
+          <br />
+          Communities
+        </h2>
 
-          {/*change col-start when adding a new community*/}
-          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>:nth-child(7)]:col-start-1 lg:[&>:nth-child(7)]:w-full lg:[&>:nth-child(7)]:max-w-none lg:[&>:nth-child(7)]:justify-self-center">
-            {communities.map((item, index) => (
-              <CommunityCard title={item.name} logo={item.logo} key={index} />
-            ))}
-          </div>
+        {/* Desktop: scattered board */}
+        <div className="hidden xl:block">
+          {partners.map((partner) => (
+            <PartnerItem
+              key={partner.name}
+              partner={partner}
+              className="absolute"
+              style={{
+                top: `${partner.y}%`,
+                [partner.fromRight ? "right" : "left"]: `${partner.x}%`,
+              }}
+            />
+          ))}
         </div>
 
-        <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-14">
-          <h1 className="font-poppins flex max-w-4xl flex-col items-center text-center text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl lg:text-6xl">
-            <h1>Participating</h1>
-            <h1>Universities</h1>
-          </h1>
-
-          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {participatingUniversities.map((item, index) => (
-              <Card title={item.name} logo={item.logo} key={index} />
-            ))}
-          </div>
+        {/* Mobile / tablet: simple grid */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 px-6 sm:grid-cols-3 xl:hidden">
+          {partners.map((partner) => (
+            <PartnerItem
+              key={partner.name}
+              partner={{ ...partner, fromRight: false, label: "bottom", marker: "tl" }}
+            />
+          ))}
         </div>
       </div>
-
-      <div
-        style={{
-          background: "linear-gradient(90deg, #8A19B8 0%, #06216B 100%)",
-        }}
-        className="absolute top-[25%] left-0 z-0 h-[150px] w-[95vw] rounded-full blur-[200px] sm:top-[28%] sm:-left-5 sm:h-[175px] sm:w-[92vw] sm:blur-[300px] md:top-[30%] md:left-0 md:h-[200px] md:w-[90vw] md:blur-[390px]"
-      ></div>
-    </Container>
+    </section>
   );
 };
 
 export default PartnersAndCommunities;
-
-const CommunityCard = ({ title, logo }: { title: string; logo: string }) => {
-  return (
-    <div className="group relative overflow-hidden rounded-2xl border border-gray-200/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-200/30 hover:bg-white/10">
-      <div className="flex flex-col items-center space-y-4 text-center">
-        <div className="flex h-24 w-24 items-center justify-center">
-          {logo &&
-            (logo.startsWith("/") ? (
-              <img src={logo} alt={title} className="h-16 w-16 object-contain" />
-            ) : (
-              <span className="text-5xl">{logo}</span>
-            ))}
-        </div>
-
-        <div className="space-y-2">
-          <h3 className="text-lg font-semibold text-white">{title}</h3>
-        </div>
-      </div>
-
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-    </div>
-  );
-};
-
-const Card = ({ title, logo }: { title: string; logo: string }) => {
-  return (
-    <div className="group relative overflow-hidden rounded-2xl border border-gray-200/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-gray-200/30 hover:bg-white/10">
-      <div className="flex flex-col items-center space-y-4 text-center">
-        <div className="flex h-24 w-24 items-center justify-center">
-          {logo &&
-            (logo.startsWith("/") ? (
-              <img src={logo} alt={title} className="h-16 w-16 object-contain" />
-            ) : (
-              <span className="text-5xl">{logo}</span>
-            ))}
-        </div>
-
-        <div className="space-y-2">
-          <h3 className="text-lg font-semibold text-white">{title}</h3>
-        </div>
-      </div>
-
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-    </div>
-  );
-};

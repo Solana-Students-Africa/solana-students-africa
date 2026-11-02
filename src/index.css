@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,50..150,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 @import url("../public/fonts/gellix/stylesheet.css");
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -14,6 +16,12 @@
 
   --primary-blue: #0c41d1;
   --off-black: #070707;
+
+  /* SSA brand */
+  --ssa-purple: #9945ff;
+  --ssa-green: #b6e890;
+  --ssa-ink: #1e1e1e;
+  --ssa-cream: #efebdf;
 
   /* SHAD CN */
   --radius: 0.625rem;
@@ -104,6 +112,11 @@
   --color-primary-blue: var(--primary-blue);
   --color-off-black: var(--off-black);
 
+  --color-ssa-purple: var(--ssa-purple);
+  --color-ssa-green: var(--ssa-green);
+  --color-ssa-ink: var(--ssa-ink);
+  --color-ssa-cream: var(--ssa-cream);
+
   --color-stable-dark: var(--stable-dark);
   --color-stable-base: var(--stable-base);
   --color-stable-light: var(--stable-light);
@@ -144,6 +157,12 @@
 
   --font-poppins: "Poppins", "sans-serif";
   --font-gellix: "Gellix", "sans-serif";
+  --font-anybody: "Anybody", "sans-serif";
+  /* The loader's bottom edge as it collapses into the navbar's base. */
+  --shadow-nav: 0 10px 28px rgb(30 20 50 / 0.16), 0 2px 6px rgb(30 20 50 / 0.08);
+
+  /* Handwriting for the campus field notes. */
+  --font-hand: "Gochi Hand", cursive;
 }
 
 @layer base {
@@ -151,14 +170,63 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-white;
+    @apply bg-ssa-cream text-ssa-ink;
     overflow-x: hidden;
   }
 }
 
 html {
-  font-size: 16px;
+  /* The design is set at 1920 wide; beyond that rem grows with the screen so 4K isn't a tiny island. */
+  font-size: max(16px, calc(100vw / 120));
   scroll-behavior: smooth;
   overflow-x: hidden;
   max-width: 100vw;
+}
+
+/* Parallelogram shapes used across the landing page. --slant is the horizontal offset. */
+@utility clip-slant {
+  clip-path: polygon(var(--slant, 12px) 0, 100% 0, calc(100% - var(--slant, 12px)) 100%, 0 100%);
+}
+
+@utility clip-slant-reverse {
+  clip-path: polygon(0 0, calc(100% - var(--slant, 12px)) 0, 100% 100%, var(--slant, 12px) 100%);
+}
+
+@utility bg-grid-paper {
+  background-image:
+    linear-gradient(to right, var(--grid-line, rgb(182 232 144 / 0.35)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line, rgb(182 232 144 / 0.35)) 1px, transparent 1px);
+  background-size: var(--grid-size, 20px) var(--grid-size, 20px);
+}
+
+@utility bg-ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--rule-gap, 1.75rem) - 1.5px),
+    var(--rule-color, var(--ssa-green)) calc(var(--rule-gap, 1.75rem) - 1.5px),
+    var(--rule-color, var(--ssa-green)) var(--rule-gap, 1.75rem)
+  );
+}
+
+/* Fills the active focus card's progress bar; its end advances to the next card. */
+@keyframes focus-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* A ring growing out from the centre of the mission section and fading as it goes. */
+@keyframes mission-ripple {
+  from {
+    transform: scale(0.05);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
 }

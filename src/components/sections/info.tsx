@@ -2,7 +2,7 @@ import { photo, SUMMIT_PHOTOS } from "@/lib/photos";
 import { playWhenVisible } from "@/lib/play-when-visible";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SyntheticEvent, useEffect, useLayoutEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useLayoutEffect, useRef, useSyncExternalStore } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,25 +19,28 @@ const tiles = Array.from(
   (_, i) => STILLS[(i * 3 + Math.floor(i / DESKTOP_COLS)) % STILLS.length]
 );
 
-// Nine videos at most: at full-grid size the outer tiles read fine as stills.
+// Only the 5 x 3 block around the centre plays: at full-grid size the outer tiles read fine as stills.
 const isNearCentre = (i: number) =>
   Math.abs(Math.floor(i / DESKTOP_COLS) - Math.floor(CENTER_TILE / DESKTOP_COLS)) <= 1 &&
-  Math.abs((i % DESKTOP_COLS) - (CENTER_TILE % DESKTOP_COLS)) <= 1;
+  Math.abs((i % DESKTOP_COLS) - (CENTER_TILE % DESKTOP_COLS)) <= 2;
+
+// One developer-cohort clip per tile in that block (14), each with a matching .jpg poster.
+const cohortClip = new Map(
+  Array.from({ length: TILE_COUNT }, (_, i) => i)
+    .filter((i) => i !== CENTER_TILE && isNearCentre(i))
+    .map((i, n) => [i, `/videos/cohort/cohort-${String(n + 1).padStart(2, "0")}`])
+);
 
 // Must match `bg-grid-paper` in index.css, which the Partners section uses.
 const PAPER_SIZE = 20;
 const PAPER_ALPHA = 0.35;
-const LINE_RGB = "182 232 144"; // --ssa-green
+const LINE_RGB = [182, 232, 144]; // --ssa-green
+// The video grid's gaps are purple; its lines turn green as they shrink into Partners' paper.
+const GAP_RGB = [153, 69, 255]; // --ssa-purple
 
 // Scroll length of each pinned stage, in screen heights.
 const ZOOM_SCREENS = 2.5;
 const LINES_SCREENS = 1;
-
-// Every tile plays the same clip, so start each at a different point to keep them out of sync.
-const offsetStart = (i: number) => (e: SyntheticEvent<HTMLVideoElement>) => {
-  const video = e.currentTarget;
-  video.currentTime = (video.duration * ((i * 7) % TILE_COUNT)) / TILE_COUNT;
-};
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 // Geometric interpolation, so zooms feel even instead of crawling then rushing.
@@ -50,8 +53,9 @@ const paperStyle = (o: {
   pos: [number, number];
   width: number;
   alpha: number;
+  rgb?: number[];
 }) => {
-  const line = `rgb(${LINE_RGB} / ${o.alpha})`;
+  const line = `rgb(${(o.rgb ?? LINE_RGB).join(" ")} / ${o.alpha})`;
   return {
     backgroundImage: `linear-gradient(to right, ${line} ${o.width}px, transparent ${o.width}px), linear-gradient(to bottom, ${line} ${o.width}px, transparent ${o.width}px)`,
     backgroundSize: `${o.size[0]}px ${o.size[1]}px`,
@@ -139,6 +143,7 @@ const Info = () => {
           pos,
           width: lerp(m.fillScale * m.gap, 1, q),
           alpha: lerp(1, PAPER_ALPHA, q),
+          rgb: GAP_RGB.map((c, k) => Math.round(lerp(c, LINE_RGB[k], q))),
         }),
       });
     };
@@ -246,31 +251,33 @@ const Info = () => {
       {/* Tiles share the screen's shape, so the zoomed-in centre tile is exactly the viewport. */}
       <div
         ref={gridRef}
-        className="bg-ssa-green relative grid grid-cols-[repeat(5,12.8vw)] grid-rows-[repeat(7,12.8vh)] gap-1 p-1 will-change-transform md:grid-cols-[repeat(7,12.8vw)] md:grid-rows-[repeat(5,12.8vh)] md:gap-1.5 md:p-1.5"
+        className="bg-ssa-purple relative grid grid-cols-[repeat(5,12.8vw)] grid-rows-[repeat(7,12.8vh)] gap-1 p-1 will-change-transform md:grid-cols-[repeat(7,12.8vw)] md:grid-rows-[repeat(5,12.8vh)] md:gap-1.5 md:p-1.5"
         aria-hidden
       >
-        {tiles.map((name, i) => (
-          <div
-            key={i}
-            ref={i === CENTER_TILE ? centerRef : undefined}
-            className="bg-ssa-ink overflow-hidden"
-          >
-            {i === CENTER_TILE || (isDesktop && isNearCentre(i)) ? (
-              <video
-                src={VIDEO_SRC}
-                poster={photo(name, "sm")}
-                preload="none"
-                muted
-                loop
-                playsInline
-                onLoadedMetadata={i === CENTER_TILE ? undefined : offsetStart(i)}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <img src={photo(name, "sm")} alt="" className="h-full w-full object-cover" />
-            )}
-          </div>
-        ))}
+        {tiles.map((name, i) => {
+          const clip = isDesktop ? cohortClip.get(i) : undefined;
+          return (
+            <div
+              key={i}
+              ref={i === CENTER_TILE ? centerRef : undefined}
+              className="bg-ssa-ink overflow-hidden"
+            >
+              {i === CENTER_TILE || clip ? (
+                <video
+                  src={clip ? `${clip}.mp4` : VIDEO_SRC}
+                  poster={clip ? `${clip}.jpg` : photo(name, "sm")}
+                  preload="none"
+                  muted
+                  loop
+                  playsInline
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <img src={photo(name, "sm")} alt="" className="h-full w-full object-cover" />
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <div ref={overlayRef} className="bg-ssa-ink/45 pointer-events-none absolute inset-0" />

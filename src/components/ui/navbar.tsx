@@ -125,6 +125,7 @@ const Navbar = () => {
             ? "bg-ssa-cream/85 py-3 shadow-sm backdrop-blur-md"
             : "bg-transparent py-5 md:py-8",
           isHidden && !isMobileMenuOpen && "-translate-y-full",
+          "[html[data-player-open]_&]:-translate-y-full",
           isMobileMenuOpen && "bg-transparent shadow-none backdrop-blur-none"
         )}
       >

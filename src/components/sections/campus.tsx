@@ -360,7 +360,10 @@ const PosterPanel = () => (
 );
 
 const IntroPanel = () => (
-  <div className="flex flex-col justify-center gap-8 px-6 py-20 sm:px-10 lg:h-full lg:w-[min(48rem,70vw)] lg:shrink-0 lg:py-0 lg:pl-[8vw]">
+  <div
+    data-intro-panel
+    className="flex min-h-svh flex-col justify-center gap-8 px-6 py-20 sm:px-10 lg:h-full lg:min-h-0 lg:w-[min(48rem,70vw)] lg:shrink-0 lg:py-0 lg:pl-[8vw]"
+  >
     <h2
       data-intro
       className="text-ssa-green text-4xl leading-[1.02] font-extrabold md:text-[2.75rem]"
@@ -415,6 +418,18 @@ const CampusSection = () => {
         // Durations in px of scroll, so the hold and the travel split the pin proportionally.
         .to({}, { duration: hold() })
         .to(track, { x: () => -distance(), duration: distance() });
+    });
+
+    // Stacked layout: a full-screen intro, centred clear of the navbar, holds before the notes scroll in.
+    mm.add("(max-width: 1023.98px) and (prefers-reduced-motion: no-preference)", () => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current?.querySelector("[data-intro-panel]"),
+        start: "top top",
+        end: () => `+=${INTRO_HOLD_SCREENS * window.innerHeight}`,
+        pin: true,
+        pinSpacing: true,
+        invalidateOnRefresh: true,
+      });
     });
 
     // Pulled up over Mission's last screen and hidden until its pin ends: no extra scroll.

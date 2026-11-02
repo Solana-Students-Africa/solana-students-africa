@@ -88,6 +88,8 @@ const SummitStage = () => {
     actions.current = {
       expand: () => {
         tween?.kill();
+        // An ended pin leaves an identity transform on the stage, which would trap and clip the fixed player.
+        if (!pin.isActive) gsap.set(stage, { clearProps: "transform" });
         setExpanded(true);
         gsap.to(cursorRef.current, { autoAlpha: 0, duration: 0.2 });
         tween = gsap.to(lift, {
@@ -167,6 +169,9 @@ const SummitStage = () => {
   // Scrolling means the visitor wants to move on.
   useEffect(() => {
     if (!expanded) return;
+    // The navbar stacks above the player, so it slides away while the player is open.
+    const html = document.documentElement;
+    html.setAttribute("data-player-open", "");
     const close = () => actions.current.collapse();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
@@ -175,6 +180,7 @@ const SummitStage = () => {
     const armed = setTimeout(() => window.addEventListener("scroll", close, { once: true }), 400);
     window.addEventListener("keydown", onKey);
     return () => {
+      html.removeAttribute("data-player-open");
       clearTimeout(armed);
       window.removeEventListener("scroll", close);
       window.removeEventListener("keydown", onKey);
@@ -252,7 +258,11 @@ const SummitStage = () => {
           playsInline
           muted
           poster={photo("dsc08705", "lg")}
-          className="absolute inset-0 h-full w-full object-cover"
+          // Full screen fits the whole frame in; a portrait phone would otherwise crop the sides off.
+          className={cn(
+            "absolute inset-0 h-full w-full",
+            expanded ? "object-contain" : "object-cover"
+          )}
         >
           <source src="/videos/experience-summit-video.mp4" type="video/mp4" />
         </video>

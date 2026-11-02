@@ -66,7 +66,13 @@ const MissionSection = () => {
     if (!section || !text || !map || !country) return;
 
     const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
+    const conditions = {
+      motion: "(prefers-reduced-motion: no-preference)",
+      phone: "(max-width: 767.98px)",
+    };
+    mm.add(conditions, (ctx) => {
+      const { motion, phone } = ctx.conditions ?? {};
+      if (!motion) return;
       const fill = gsap.timeline({
         defaults: { ease: "none", duration: 0.1 },
         scrollTrigger: { trigger: section, start: "top 85%", end: "top top", scrub: 0.4 },
@@ -101,6 +107,27 @@ const MissionSection = () => {
           scale: (2.5 * Math.max(w, h)) / (Math.min(box.width, box.height) * unit),
         };
       };
+
+      // Redrawing the map at that scale every frame is the worst stutter on phones.
+      if (phone) {
+        gsap
+          .timeline({
+            defaults: { ease: "none" },
+            scrollTrigger: {
+              trigger: section,
+              pin: true,
+              pinSpacing: true,
+              start: "top top",
+              end: "+=120%",
+              scrub: 0.6,
+              anticipatePin: 1,
+            },
+          })
+          .to({}, { duration: 0.3 })
+          .to(text, { autoAlpha: 0, y: -40, duration: 0.3 })
+          .fromTo(fillRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, "<0.1");
+        return;
+      }
 
       let m = measure();
       const zoom = { t: 0 };
@@ -152,7 +179,7 @@ const MissionSection = () => {
       <div
         ref={ripplesRef}
         aria-hidden
-        className="pointer-events-none absolute inset-0 grid place-items-center"
+        className="pointer-events-none absolute inset-0 grid place-items-center max-md:hidden"
       >
         {Array.from({ length: RIPPLES }, (_, i) => (
           <span

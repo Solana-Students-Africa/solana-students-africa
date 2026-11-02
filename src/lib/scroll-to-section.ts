@@ -16,7 +16,7 @@ const FULL_SCREEN = new Set(["about", "summit", "campus"]);
 
 // Partners appears and fades in only after its top passes, so land past that.
 const landingOffset = (id: string) => {
-  if (id === "partners") return -0.25 * window.innerHeight;
+  if (id === "partners" && window.innerWidth >= 768) return -0.25 * window.innerHeight;
   if (FULL_SCREEN.has(id)) return 0;
   return getNavbarOffset();
 };

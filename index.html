@@ -67,6 +67,16 @@
     </script>
     
     <link rel="icon" href="/favicon.ico" />
+
+    <!-- The loader waits for fonts; these start them early instead of after the app's CSS @imports. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,50..150,100..900&display=swap"
+    />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" />
   </head>
   <body>
     <div id="root"></div>

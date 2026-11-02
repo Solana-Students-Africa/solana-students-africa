@@ -10,7 +10,7 @@ import AfricaMap from "./africa-map";
 gsap.registerPlugin(ScrollTrigger);
 
 // Keep the loader up at least this long, so it never just flashes and the colour pop-in finishes.
-const MIN_SHOW_MS = 1800;
+const MIN_SHOW_MS = 1000;
 
 const WORDMARK = "SOLANA STUDENTS AFRICA";
 
@@ -47,7 +47,7 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
     const popIn = gsap.fromTo(
       bandsRef.current,
       { autoAlpha: 0, x: (i: number) => (i === 1 ? -14 : 14) },
-      { autoAlpha: 1, x: 0, duration: 0.35, ease: "back.out(2)", delay: 0.45, stagger: 0.3 }
+      { autoAlpha: 1, x: 0, duration: 0.3, ease: "back.out(2)", delay: 0.2, stagger: 0.18 }
     );
 
     let exit: gsap.core.Timeline | undefined;
@@ -76,17 +76,17 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
         exit
           .to(
             contentRef.current,
-            { y: -60, autoAlpha: 0, duration: 0.5, ease: "power2.in" },
-            "+=0.2"
+            { y: -60, autoAlpha: 0, duration: 0.35, ease: "power2.in" },
+            "+=0.1"
           )
           .to(
             root,
-            { y: () => keep - root.offsetHeight, duration: 1, ease: "power4.inOut" },
-            "<0.15"
+            { y: () => keep - root.offsetHeight, duration: 0.8, ease: "power4.inOut" },
+            "<0.1"
           )
           // The page starts to show a moment into the swipe: let it begin animating in then.
           .call(reach, ["reveal"], "<0.25")
-          .to(edgeRef.current, { autoAlpha: 0, duration: 0.6, ease: "power1.inOut" }, "+=0.15");
+          .to(edgeRef.current, { autoAlpha: 0, duration: 0.4, ease: "power1.inOut" }, "+=0.1");
       }
     });
 

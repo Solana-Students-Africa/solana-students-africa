@@ -161,7 +161,10 @@ const Info = () => {
 
     const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
+    // Phones keep just the opening frame: the zoom and line stages stutter on mid-range devices.
+    mm.add("(max-width: 767.98px) and (prefers-reduced-motion: no-preference)", () => applyZoom());
+
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
       applyZoom();
       applyPaper();
 
@@ -274,9 +277,9 @@ const Info = () => {
                   playsInline
                   className="h-full w-full object-cover"
                 />
-              ) : (
+              ) : isDesktop ? (
                 <img src={photo(name, "sm")} alt="" className="h-full w-full object-cover" />
-              )}
+              ) : null}
             </div>
           );
         })}

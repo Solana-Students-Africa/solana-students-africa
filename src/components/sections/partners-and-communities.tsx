@@ -150,22 +150,30 @@ const PartnersAndCommunities = () => {
     if (!section) return;
 
     const mm = gsap.matchMedia();
-    mm.add({ board: "(min-width: 1280px)", grid: "(max-width: 1279.98px)" }, (ctx) => {
-      gsap.set(section, { autoAlpha: 0 });
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "max",
-        onToggle: (self) => gsap.set(section, { autoAlpha: self.isActive ? 1 : 0 }),
-      });
+    const conditions = {
+      board: "(min-width: 1280px)",
+      grid: "(max-width: 1279.98px)",
+      phone: "(max-width: 767.98px)",
+    };
+    mm.add(conditions, (ctx) => {
+      const { board, phone } = ctx.conditions ?? {};
+      // Phones skip Info's pin, so there is nothing to overlap there.
+      if (!phone) {
+        gsap.set(section, { autoAlpha: 0 });
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top top",
+          end: "max",
+          onToggle: (self) => gsap.set(section, { autoAlpha: self.isActive ? 1 : 0 }),
+        });
+      }
 
-      const board = ctx.conditions?.board;
       gsap
         .timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
             trigger: section,
-            start: "top top",
+            start: phone ? "top 80%" : "top top",
             scrub: 0.6,
             // The board fits one screen on desktop, so hold it there before Campus.
             ...(board ? { pin: true, pinSpacing: true, end: "+=90%" } : { end: "+=20%" }),
@@ -181,7 +189,7 @@ const PartnersAndCommunities = () => {
     // Opaque cream so Info doesn't show through; the paper continues Info's grid.
     <section
       ref={sectionRef}
-      className="partners-section bg-ssa-cream bg-grid-paper relative z-10 -mt-[100vh] py-16 md:py-24 xl:flex xl:h-screen xl:items-center xl:pt-24 xl:pb-6"
+      className="partners-section bg-ssa-cream bg-grid-paper relative z-10 py-16 md:-mt-[100vh] md:py-24 xl:flex xl:h-screen xl:items-center xl:pt-24 xl:pb-6"
       id="partners"
     >
       <div

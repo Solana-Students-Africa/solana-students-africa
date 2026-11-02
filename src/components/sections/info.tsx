@@ -102,46 +102,47 @@ const Info = () => {
         grid.offsetLeft + grid.offsetWidth / 2,
         grid.offsetTop + grid.offsetHeight / 2,
       ];
-      // Padding equals the gap, so lines repeat every `pitch` from the grid's edge.
-      const linesAt: [number, number] = [
-        gridCenter[0] - (fillScale * grid.offsetWidth) / 2,
-        gridCenter[1] - (fillScale * grid.offsetHeight) / 2,
-      ];
+      const gridSize: [number, number] = [grid.offsetWidth, grid.offsetHeight];
       // Partners overlaps this section exactly when the pin ends, so its lines start at 0, 0.
       const finalAt: [number, number] = [0, 0];
-      return { gap, pitch, tileScale, fillScale, gridCenter, linesAt, finalAt };
+      return { gap, pitch, tileScale, fillScale, gridCenter, gridSize, finalAt };
     };
 
     let m = measure();
     const state = { zoom: 0, shrink: 0 };
 
+    const gridScale = () => logLerp(m.tileScale, m.fillScale, state.zoom);
+
     const applyZoom = () => {
-      gsap.set(grid, {
-        transformOrigin: "50% 50%",
-        scale: logLerp(m.tileScale, m.fillScale, state.zoom),
-      });
+      gsap.set(grid, { transformOrigin: "50% 50%", scale: gridScale() });
+      // The zoom's heavier scrub can still be settling when the lines take over; follow it.
+      applyPaper();
     };
 
+    // Lines start on the grid's live gaps, not its final ones, so the two never show doubled.
     const applyPaper = () => {
       const q = state.shrink;
-      const size = [0, 1].map((a) => logLerp(m.fillScale * m.pitch[a], PAPER_SIZE, q)) as [
+      const scale = gridScale();
+      const size = [0, 1].map((a) => logLerp(scale * m.pitch[a], PAPER_SIZE, q)) as [
         number,
         number,
       ];
       const pos = [0, 1].map((a) => {
-        const startSize = m.fillScale * m.pitch[a];
+        const startSize = scale * m.pitch[a];
+        // Padding equals the gap, so lines repeat every `pitch` from the grid's edge.
+        const linesAt = m.gridCenter[a] - (scale * m.gridSize[a]) / 2;
         // Shrink about the centre, then nudge so the lines land on the final phase.
         const fromCenter = (c: number, s: number) =>
           m.gridCenter[a] - (m.gridCenter[a] - c) * (s / startSize);
-        const drift = wrap(m.finalAt[a] - fromCenter(m.linesAt[a], PAPER_SIZE), PAPER_SIZE);
-        return fromCenter(m.linesAt[a], size[a]) + drift * q;
+        const drift = wrap(m.finalAt[a] - fromCenter(linesAt, PAPER_SIZE), PAPER_SIZE);
+        return fromCenter(linesAt, size[a]) + drift * q;
       }) as [number, number];
 
       gsap.set(paper, {
         ...paperStyle({
           size,
           pos,
-          width: lerp(m.fillScale * m.gap, 1, q),
+          width: lerp(scale * m.gap, 1, q),
           alpha: lerp(1, PAPER_ALPHA, q),
           rgb: GAP_RGB.map((c, k) => Math.round(lerp(c, LINE_RGB[k], q))),
         }),
@@ -205,7 +206,8 @@ const Info = () => {
         })
         // autoAlpha hides the grid outright once faded, so the browser stops painting the videos.
         .to(grid, { autoAlpha: 0, duration: 0.3 }, 0)
-        .to(state, { shrink: 1, duration: 1, ease: "power1.inOut", onUpdate: applyPaper }, 0.15)
+        // Shrinks only once the videos are gone, so the lines never part from the gaps on screen.
+        .to(state, { shrink: 1, duration: 1, ease: "power1.inOut", onUpdate: applyPaper }, 0.3)
         // A sliver of hold so the scrub settles before Partners takes over the screen.
         .to({}, { duration: 0.05 });
     });
